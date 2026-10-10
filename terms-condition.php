@@ -1,9 +1,9 @@
 <?php
 include('config/connect.php');
 
-$pageTitle = "Terms & Conditions | Bhagirath Enterprises";
-$meta_description = "Read the terms and conditions of Bhagirath Enterprises for purchasing spices, dry fruits, seeds, and kernels[cite: 25].";
-$meta_key = "terms and conditions, bhagirath enterprises, export terms";
+$pageTitle = "Terms & Conditions | AKR Build Tech";
+$meta_description = "Read the terms and conditions of AKR Build Tech for purchasing construction materials, AAC Block Jointing Mortar, and infrastructure products.";
+$meta_key = "terms and conditions, akr build tech, export terms, construction materials";
 
 include 'includes/header.php';
 include 'includes/breadcrumb.php';
@@ -20,24 +20,24 @@ include 'includes/breadcrumb.php';
                     <p class="text-muted mb-5"><strong>Last Updated:</strong> <?= date('F d, Y'); ?></p>
 
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">1. Introduction</h4>
-                    <p>Welcome to <strong>Bhagirath Enterprises</strong>[cite: 25]. By browsing our website and purchasing our agricultural commodities, spices, dry fruits, seeds, and kernels, you agree to abide by these Terms & Conditions[cite: 25].</p>
+                    <p>Welcome to <strong>AKR Build Tech</strong>. By browsing our website and purchasing our construction materials, AAC Block Jointing Mortar, and infrastructure products, you agree to abide by these Terms & Conditions.</p>
 
-                    <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">2. Natural Variations in Products</h4>
-                    <p>We deal in natural agricultural produce (spices, dry fruits, seeds). Minor variations in color, size, aroma, or texture may occur between harvest batches, which are natural characteristics and not defects[cite: 25].</p>
+                    <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">2. Variations in Products</h4>
+                    <p>We deal in industrial construction materials. Minor variations in texture, density, or color may occur between manufacturing batches, which are standard characteristics and not defects.</p>
 
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">3. Pricing and Import Duties</h4>
-                    <p>Domestic prices include applicable taxes unless specified[cite: 25]. For international shipments, the buyer is solely responsible for all destination customs duties, import taxes, and local levies[cite: 25].</p>
+                    <p>Domestic prices include applicable taxes unless specified. For international shipments, the buyer is solely responsible for all destination customs duties, import taxes, and local levies.</p>
 
-                    <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">4. Culinary Disclaimer</h4>
-                    <p>Information on our website regarding spice benefits is for general culinary and informational purposes and does not substitute medical advice[cite: 25].</p>
+                    <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">4. Product Usage Disclaimer</h4>
+                    <p>Information on our website regarding material benefits and specifications is for general informational purposes and should be verified with structural engineers for specific project requirements.</p>
 
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">5. Governing Law</h4>
-                    <p>Any disputes arising from purchases or website usage shall be governed by the laws of India and subject to local jurisdiction[cite: 25].</p>
+                    <p>Any disputes arising from purchases or website usage shall be governed by the laws of India and subject to local jurisdiction.</p>
 
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">6. Contact Information</h4>
                     <div class="p-3 mt-3 rounded" style="background-color: #f1f5f9; border-left: 4px solid var(--primary-green, #2b5e2c);">
-                        <p class="mb-1"><strong>Bhagirath Enterprises</strong></p>
-                        <p class="mb-1"><strong>Email:</strong> support@bhagirathenterprises.com</p>
+                        <p class="mb-1"><strong>AKR Build Tech</strong></p>
+                        <p class="mb-1"><strong>Email:</strong> support@akrbuildtech.com</p>
                         <p class="mb-0"><strong>Phone:</strong> +91-8448211202</p>
                     </div>
                 </div>

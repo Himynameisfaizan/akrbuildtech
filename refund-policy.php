@@ -1,9 +1,9 @@
 <?php
 include('config/connect.php');
 
-$pageTitle = "Refund and Cancellation Policy | Bhagirath Enterprises";
-$meta_description = "Read the refund and cancellation policy of Bhagirath Enterprises for premium spices, dry fruits, seeds, and kernels orders[cite: 23].";
-$meta_key = "refund policy, cancellation policy, bhagirath enterprises, spices export";
+$pageTitle = "Refund and Cancellation Policy | AKR Build Tech";
+$meta_description = "Read the refund and cancellation policy of AKR Build Tech for construction materials, AAC Block Jointing Mortar, and infrastructure products.";
+$meta_key = "refund policy, cancellation policy, akr build tech, construction materials export";
 
 include 'includes/header.php';
 include 'includes/breadcrumb.php';
@@ -19,33 +19,33 @@ include 'includes/breadcrumb.php';
                     <h1 class="mb-4" style="color: #2b5e2c; font-weight: 700;">Refund and Cancellation Policy</h1>
                     <p class="text-muted mb-5"><strong>Last Updated:</strong> <?= date('F d, Y'); ?></p>
 
-                    <p>At <strong>Bhagirath Enterprises</strong>, we ensure the highest quality of our agricultural commodities, including premium spices, dry fruits, seeds, and kernels[cite: 23]. Because we deal in consumable food products, our refund and cancellation policies are structured to comply with strict food safety, hygiene, and trade standards[cite: 23].</p>
+                    <p>At <strong>AKR Build Tech</strong>, we ensure the highest quality of our construction commodities, including premium AAC Block Jointing Mortar and infrastructure materials. Because we deal in heavy and bulk construction products, our refund and cancellation policies are structured to comply with strict industrial and trade standards.</p>
 
                     <h3 class="mt-5 mb-3" style="color: #e65c00; font-size: 1.3rem;">Cancellation Policy</h3>
                     
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">1. Order Cancellation Before Dispatch</h4>
-                    <p>You may cancel your order within <strong>24 hours</strong> of placing it, provided it has not yet been processed, packed, or dispatched from our facility[cite: 23]. A full refund will be processed immediately upon valid request sent to our official support email[cite: 23].</p>
+                    <p>You may cancel your order within <strong>24 hours</strong> of placing it, provided it has not yet been processed, packed, or dispatched from our facility. A full refund will be processed immediately upon valid request sent to our official support email.</p>
 
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">2. Cancellation After Dispatch</h4>
-                    <p>Due to the perishable and consumable nature of spices and dry fruits, orders <strong>cannot be cancelled</strong> once they have been handed over to our logistics partners or shipped[cite: 23].</p>
+                    <p>Due to the heavy and industrial nature of construction materials, orders <strong>cannot be cancelled</strong> once they have been handed over to our logistics partners or shipped.</p>
                     
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">3. Bulk & Wholesale Orders</h4>
-                    <p>For custom-packaged or bulk container export orders of seeds and kernels, cancellations are not permitted once sourcing and processing have commenced[cite: 23]. Advance payments for bulk wholesale orders remain strictly non-refundable[cite: 23].</p>
+                    <p>For custom-packaged or bulk container export orders of infrastructure materials, cancellations are not permitted once sourcing and processing have commenced. Advance payments for bulk wholesale orders remain strictly non-refundable.</p>
 
                     <hr class="my-5">
 
                     <h3 class="mb-3" style="color: #e65c00; font-size: 1.3rem;">Return and Refund Policy</h3>
                     
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">1. Eligibility for Returns & Refunds</h4>
-                    <p>We <strong>do not accept general returns</strong> (such as change of mind) due to strict food safety and hygiene regulations[cite: 23]. However, replacements or refunds are applicable if[cite: 23]:</p>
+                    <p>We <strong>do not accept general returns</strong> (such as change of mind) due to the nature and logistics of construction supplies. However, replacements or refunds are applicable if:</p>
                     <ul>
-                        <li>The product packaging was severely damaged or compromised during transit[cite: 23].</li>
-                        <li>An incorrect product or quantity was delivered[cite: 23].</li>
+                        <li>The product packaging was severely damaged or compromised during transit affecting the material quality.</li>
+                        <li>An incorrect product or quantity was delivered.</li>
                     </ul>
-                    <p><em>Note: You must notify us within <strong>48 hours of delivery</strong> with unboxing video or photographic proof[cite: 23].</em></p>
+                    <p><em>Note: You must notify us within <strong>48 hours of delivery</strong> with unboxing video or photographic proof.</em></p>
 
                     <h4 class="mt-4" style="font-size: 1.1rem; color: #2b5e2c; font-weight: 600;">2. Refund Timeline</h4>
-                    <p>Approved refunds are credited back to the original payment method within <strong>5 to 7 business days</strong>[cite: 23].</p>
+                    <p>Approved refunds are credited back to the original payment method within <strong>5 to 7 business days</strong>.</p>
                 </div>
             </div>
 
