@@ -1,37 +1,90 @@
 /* =====================================
+   BRAND TOKENS  (taken from the AKR Buildtech logo)
+   Palette ko badalna ho to sirf yahin badlo, poori site follow karegi.
+
+   --brand       logo ka lime green. Fills / accents ke liye.
+                 White ke upar text ke liye use NAHI karna (contrast 2:1).
+   --brand-deep  lime ka dark version. White ke upar text, links, icons ke liye (5:1).
+   --ink         logo ka black.
+   ===================================== */
+:root {
+  --brand: #8dc645;
+  --brand-hover: #a4d466;
+  --brand-rgb: 141, 198, 69;
+  --brand-deep: #4a7c10;
+  --brand-deep-rgb: 74, 124, 16;
+  --brand-tint: #f3f8ea;
+
+  --ink: #111111;
+  --ink-soft: #1a1a1a;
+  --ink-rgb: 17, 17, 17;
+
+  --text: #2b2b2b;
+  --muted: #5a5f55;
+  --line: #e4e8dd;
+  --surface: #f6f7f4;
+  --on-dark: #e8eae4;
+  --on-dark-muted: #a8aca3;
+
+  --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Barlow Condensed", "Barlow", system-ui, sans-serif;
+
+  --breadcrumb-image: url("https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=2000&auto=format&fit=crop");
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--brand-deep);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* =====================================
    TOPBAR STYLING
    ===================================== */
 .topbar {
-  background-color: #711b3c; /* Brand Maroon */
+  background-color: var(--ink);
   color: #ffffff;
   font-size: 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .topbar a {
   color: #ffffff;
   text-decoration: none;
-  transition: opacity 0.3s ease;
+  transition: color 0.25s ease;
 }
 
 .topbar a:hover {
-  opacity: 0.8;
+  color: var(--brand);
+}
+
+.topbar-left i {
+  color: var(--brand);
 }
 
 .topbar-right a {
   display: inline-block;
-  margin-left: 10px;
-  background: rgba(255, 255, 255, 0.1);
+  margin-left: 8px;
+  background: rgba(255, 255, 255, 0.08);
   width: 28px;
   height: 28px;
   line-height: 28px;
   text-align: center;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .topbar-right a:hover {
-  background: #ffffff;
-  color: #711b3c;
+  background: var(--brand);
+  color: var(--ink);
   transform: translateY(-2px);
 }
 
@@ -40,143 +93,198 @@
    ===================================== */
 .custom-navbar {
   background-color: #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  padding: 10px 0;
+  box-shadow: 0 4px 18px rgba(var(--ink-rgb), 0.06);
+  padding: 8px 0;
   z-index: 1030;
 }
 
-/* Logo Animation */
-.logo-animate {
+/* Logo (trimmed logo.png use karo, side ki khali jagah nahi honi chahiye) */
+.site-logo {
+  height: 58px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
   transition: transform 0.3s ease;
 }
-.logo-animate:hover {
+.navbar-brand:hover .site-logo {
   transform: scale(1.03);
 }
 
 /* Navigation Links */
 .custom-navbar .nav-link {
-  color: #222222 !important; /* Brand Charcoal */
+  color: var(--ink) !important;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
   margin: 0 12px;
+  padding-left: 0;
+  padding-right: 0;
   position: relative;
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
 }
 
-/* Hover & Active State (Maroon Highlight) */
 .custom-navbar .nav-link:hover,
 .custom-navbar .nav-link.active {
-  color: #711b3c !important; /* Brand Maroon */
+  color: var(--brand-deep) !important;
 }
 
-/* Smooth Bottom Border Animation */
-.custom-navbar .nav-link::after {
+/* Underline ::before pe hai, taaki dropdown ka caret (::after) kharab na ho */
+.custom-navbar .nav-link::before {
   content: "";
   position: absolute;
+  left: 0;
+  bottom: 0;
   width: 0;
   height: 3px;
-  bottom: -5px;
-  left: 0;
-  background-color: #711b3c;
-  transition: width 0.3s ease;
+  background-color: var(--brand);
   border-radius: 2px;
+  transition: width 0.3s ease;
 }
 
-.custom-navbar .nav-link:hover::after,
-.custom-navbar .nav-link.active::after {
+.custom-navbar .nav-link:hover::before,
+.custom-navbar .nav-link.active::before,
+.custom-navbar .nav-link.show::before {
   width: 100%;
 }
 
-/* Dropdown Hover Logic for Desktop */
+/* Dropdown */
+.custom-navbar .dropdown-menu {
+  border: 0;
+  border-top: 3px solid var(--brand);
+  border-radius: 0 0 8px 8px;
+  padding: 8px 0;
+  min-width: 230px;
+  box-shadow: 0 14px 32px rgba(var(--ink-rgb), 0.14);
+}
+
+/* Desktop: hover pe khulta hai, click / keyboard (.show) se bhi khulta hai */
 @media all and (min-width: 992px) {
   .custom-navbar .dropdown-menu {
     display: none;
     margin-top: 0;
-    border-radius: 8px;
-    padding: 10px 0;
   }
-  .custom-navbar .dropdown:hover .dropdown-menu {
+  .custom-navbar .dropdown:hover > .dropdown-menu,
+  .custom-navbar .dropdown-menu.show {
     display: block;
-    animation: fadeDropdown 0.3s ease forwards;
+    animation: fadeDropdown 0.25s ease forwards;
   }
 }
 
 @keyframes fadeDropdown {
-  0% { opacity: 0; transform: translateY(10px); }
+  0% { opacity: 0; transform: translateY(8px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
 .dropdown-item {
   font-weight: 500;
-  padding: 8px 20px;
-  color: #444;
-  transition: all 0.2s;
+  padding: 9px 20px;
+  color: var(--text);
+  transition: background-color 0.2s, color 0.2s, padding 0.2s;
 }
 
 .dropdown-item:hover,
+.dropdown-item:focus,
 .active-dropdown-item {
-  background-color: rgba(113, 27, 60, 0.05);
-  color: #711b3c !important;
-  font-weight: 700;
-  padding-left: 25px; /* Slight indent on hover/active */
+  background-color: var(--brand-tint);
+  color: var(--brand-deep) !important;
+  font-weight: 600;
+  padding-left: 25px;
 }
 
-/* Premium Call to Action Button */
+/* Call to Action Button: lime fill, black text (logo ka "R") */
 .btn-quote {
-  background-color: #711b3c;
-  color: white;
+  --bs-btn-color: var(--ink);
+  --bs-btn-bg: var(--brand);
+  --bs-btn-border-color: var(--brand);
+  --bs-btn-hover-color: var(--brand);
+  --bs-btn-hover-bg: var(--ink);
+  --bs-btn-hover-border-color: var(--ink);
+  --bs-btn-active-color: var(--brand);
+  --bs-btn-active-bg: var(--ink);
+  --bs-btn-active-border-color: var(--ink);
+  border-width: 2px;
   border-radius: 30px;
   padding: 8px 24px;
-  font-weight: 600;
-  border: 2px solid #711b3c;
+  font-weight: 700;
   transition: all 0.3s ease;
 }
 .btn-quote:hover {
-  background-color: transparent;
-  color: #711b3c;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(113, 27, 60, 0.2);
+  box-shadow: 0 6px 16px rgba(var(--ink-rgb), 0.2);
+}
+
+/* Dark solid button (e.g. "Read More") */
+.btn-ink {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: var(--ink);
+  --bs-btn-border-color: var(--ink);
+  --bs-btn-hover-color: var(--ink);
+  --bs-btn-hover-bg: var(--brand);
+  --bs-btn-hover-border-color: var(--brand);
+  --bs-btn-active-color: var(--ink);
+  --bs-btn-active-bg: var(--brand);
+  --bs-btn-active-border-color: var(--brand);
+  border-width: 2px;
+  border-radius: 6px;
+  padding: 10px 26px;
+  font-weight: 700;
+  transition: all 0.3s ease;
 }
 
 /* Mobile specific adjustments */
 @media (max-width: 991px) {
-  .custom-navbar .nav-link::after {
-    display: none; /* Mobile mein underline hide */
+  .custom-navbar .nav-link::before {
+    display: none;
   }
-  .nav-item {
-    margin-bottom: 5px;
+  .custom-navbar .nav-link.active {
+    border-left: 3px solid var(--brand);
     padding-left: 10px;
   }
-  .custom-navbar {
-    padding: 15px 0;
+  .custom-navbar .navbar-collapse {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--line);
   }
-  /* Ensure mobile toggler outline is removed */
+  .custom-navbar .nav-link {
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .custom-navbar .dropdown-menu {
+    border-top: 0;
+    box-shadow: none;
+    background: var(--surface);
+  }
+  .custom-navbar {
+    padding: 8px 0;
+  }
+  .site-logo {
+    height: 50px;
+  }
   .navbar-toggler:focus {
     box-shadow: none;
   }
 }
+
 /* ==============================
-       BREADCRUMB SECTION STYLING
-       ============================== */
+   BREADCRUMB SECTION STYLING
+   ============================== */
 .breadcrumb-wrapper {
   background:
-    linear-gradient(rgba(113, 27, 60, 0.9), rgba(34, 34, 34, 0.95)), /* Maroon to Charcoal Gradient */
-    url("https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=2000&auto=format&fit=crop")
-      center center / cover no-repeat fixed;
+    linear-gradient(rgba(var(--ink-rgb), 0.86), rgba(var(--ink-rgb), 0.94)),
+    var(--breadcrumb-image) center center / cover no-repeat fixed;
   padding: 100px 0 80px 0;
   text-align: center;
   color: #ffffff;
   position: relative;
   margin-top: 0;
-  border-bottom: 4px solid #711b3c; /* Maroon border at bottom for premium feel */
+  border-bottom: 4px solid var(--brand);
 }
 
 .breadcrumb-title {
-  font-family: inherit; /* Website ki default premium font lega */
-  font-size: 3rem;
-  font-weight: 800;
-  letter-spacing: 1px;
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   margin-bottom: 15px;
   text-transform: capitalize;
   animation: slideDown 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
@@ -204,14 +312,13 @@
 }
 
 .custom-breadcrumb li a {
-  color: rgba(255, 255, 255, 0.7); /* Slightly faded white for inactive link */
+  color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .custom-breadcrumb li a:hover {
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  color: var(--brand);
 }
 
 .custom-breadcrumb li i {
@@ -219,53 +326,71 @@
 }
 
 .custom-breadcrumb li + li::before {
-  content: "\276F"; /* Right-pointing angle quotation mark */
+  content: "\276F";
   padding: 0 12px;
   color: rgba(255, 255, 255, 0.4);
   font-size: 0.9rem;
 }
 
 .custom-breadcrumb li.active {
-  color: #ffffff;
+  color: var(--brand);
   font-weight: 700;
 }
 
 @keyframes slideDown {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 @keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile Adjustments */
 @media (max-width: 768px) {
   .breadcrumb-wrapper {
     padding: 80px 0 60px 0;
   }
   .breadcrumb-title {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
   .custom-breadcrumb {
     font-size: 0.95rem;
   }
 }
 
+/* =====================================
+   FOOTER
+   ===================================== */
 .custom-footer {
-  background-color: #151515;
-  color: #e0e0e0;
-  font-family: "Inter", sans-serif;
+  background-color: var(--ink);
+  color: var(--on-dark);
+  font-family: var(--font-body);
+  border-top: 4px solid var(--brand);
+}
+
+.footer-brand {
+  border-radius: 8px;
+}
+.footer-brand img {
+  display: block;
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-brand-name {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
 .footer-heading {
+  font-family: var(--font-display);
   color: #ffffff;
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
   position: relative;
   padding-bottom: 12px;
   margin-bottom: 25px;
@@ -278,14 +403,30 @@
   bottom: 0;
   width: 45px;
   height: 3px;
-  background-color: #711b3c; /* Brand Maroon */
+  background-color: var(--brand);
   border-radius: 2px;
 }
 
 .footer-text {
-  color: #a9a9a9 !important; /* Light Grey for visibility */
+  color: var(--on-dark-muted) !important;
   line-height: 1.7;
   font-size: 0.95rem;
+}
+
+a.footer-text:hover {
+  color: var(--brand) !important;
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--brand);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.3px;
+  padding: 7px 14px;
+  border-radius: 4px;
 }
 
 .footer-links li {
@@ -293,10 +434,14 @@
 }
 
 .footer-links a {
-  color: #a9a9a9 !important;
+  color: var(--on-dark-muted) !important;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   display: inline-block;
+}
+
+.footer-links a i {
+  color: var(--brand);
 }
 
 .footer-links a:hover {
@@ -305,19 +450,20 @@
 }
 
 .footer-contact-icon {
-  width: 35px;
-  height: 35px;
-  background-color: rgba(113, 27, 60, 0.15); /* Soft maroon bg */
-  color: #df6e97; /* Lighter maroon for dark bg contrast */
+  width: 36px;
+  height: 36px;
+  background-color: rgba(var(--brand-rgb), 0.14);
+  color: var(--brand);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   flex-shrink: 0;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin-right: 15px;
 }
 
+/* Social: ek hi style (brand-colored circles palette se takra rahe the) */
 .footer-social a {
   width: 40px;
   height: 40px;
@@ -325,16 +471,40 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.08);
   color: #fff;
   text-decoration: none;
-  transition: transform 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .footer-social a:hover {
+  background-color: var(--brand);
+  color: var(--ink);
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+.footer-bottom {
+  background-color: #000000;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #9a9e95;
+  font-size: 0.9rem;
+}
+.footer-bottom strong {
+  color: #ffffff;
+}
+.footer-bottom a {
+  color: var(--brand);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.footer-bottom a:hover {
+  color: #ffffff;
+}
+
+/* =====================================
+   FLOATING CONTACT BUTTONS
+   ===================================== */
 .floating-contact {
   position: fixed;
   bottom: 30px;
@@ -345,7 +515,6 @@
   z-index: 9999;
 }
 
-/* Common Button Styling */
 .float-btn {
   width: 55px;
   height: 55px;
@@ -360,48 +529,37 @@
   position: relative;
 }
 
-/* Hover effect */
 .float-btn:hover {
   transform: scale(1.1);
   color: #ffffff;
 }
 
-/* WhatsApp Specific Styling */
+/* WhatsApp apna recognisable green rakhta hai */
 .float-whatsapp {
   background-color: #25d366;
+  animation: pulse-green 2s infinite;
 }
-
 .float-whatsapp:hover {
   background-color: #20b858;
 }
 
-/* Phone Specific Styling (Using Brand Maroon) */
+/* Phone: black + lime (logo colors) */
 .float-phone {
-  background-color: #711b3c;
+  background-color: var(--ink);
+  color: var(--brand);
+  border: 2px solid var(--brand);
 }
-
 .float-phone:hover {
-  background-color: #5a152f;
-}
-
-/* Optional Pulse Animation for WhatsApp to grab attention */
-.float-whatsapp {
-  animation: pulse-green 2s infinite;
+  background-color: var(--brand);
+  color: var(--ink);
 }
 
 @keyframes pulse-green {
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-/* Mobile Responsive adjustments */
 @media (max-width: 768px) {
   .floating-contact {
     bottom: 20px;
@@ -412,5 +570,18 @@
     width: 50px;
     height: 50px;
     font-size: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-whatsapp,
+  .breadcrumb-title,
+  .custom-breadcrumb {
+    animation: none;
+  }
+  .breadcrumb-title,
+  .custom-breadcrumb {
+    opacity: 1;
+    transform: none;
   }
 }

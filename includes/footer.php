@@ -7,6 +7,7 @@ $c_email = "bhagirathenterprise7@gmail.com";
 $c_fb = "#";
 $c_linkedin = "#";
 $c_wp = "#";
+$c_instagram = "#"; // pehle init hi nahi tha
 $footer_about_text = "Bhagirath Enterprise is a leading exporter of premium agricultural products, specializing in farm-fresh spices and dry fruits."; // Fallback text[cite: 15]
 
 if (isset($conn)) {
@@ -33,7 +34,7 @@ if (isset($conn)) {
 
         $c_fb = !empty($contact_info['facebook']) ? $contact_info['facebook'] : $c_fb;
         $c_linkedin = !empty($contact_info['linkdin']) ? $contact_info['linkdin'] : $c_linkedin;
-        $c_instagram = !empty($contact_info['instagram']) ? $contact_info['instagram'] : '$c_instagram';
+        $c_instagram = !empty($contact_info['instagram']) ? $contact_info['instagram'] : '#';
         $c_wp = !empty($contact_info['wp_number']) ? 'https://wa.me/' . preg_replace('/[^0-9]/', '', $contact_info['wp_number']) : $c_wp;
     }
 
@@ -59,17 +60,17 @@ if (isset($conn)) {
 
             <!-- Column 1: About & Logo -->
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <div class="footer-brand bg-white d-inline-block p-2 mb-4 shadow-sm" style="border-radius: 8px;">
-                    <img src="<?= htmlspecialchars($footer_logo); ?>" alt="Bhagirath Enterprise" style="width: 130px; height: auto; object-fit: contain;" onerror="this.src='assets/images/logo/logo.png'">
+                <div class="footer-brand bg-white d-inline-block p-2 mb-4 shadow-sm">
+                    <img src="<?= htmlspecialchars($footer_logo); ?>" alt="Bhagirath Enterprise" onerror="this.onerror=null;this.src='assets/images/logo/logo.png'">
                 </div>
-                <h4 class="text-white fw-bold mb-3 text-uppercase" style="letter-spacing: 0.5px; font-size: 1.1rem;">BHAGIRATH ENTERPRISE</h4>
+                <h4 class="footer-brand-name">BHAGIRATH ENTERPRISE</h4>
                 <!-- Dynamic Company Content -->
                 <p class="footer-text mb-4">
                     <?= htmlspecialchars($footer_about_text); ?>
                 </p>
 
                 <!-- Verified Supplier Badge -->
-                <span class="badge" style="background-color: #711b3c; font-weight: 500; font-size: 13px; padding: 8px 15px; letter-spacing: 0.5px;">
+                <span class="footer-badge">
                     <i class="bi bi-shield-check me-2"></i> Verified Exporter
                 </span>
             </div>
@@ -78,13 +79,13 @@ if (isset($conn)) {
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                 <h4 class="footer-heading">Information</h4>
                 <ul class="footer-links list-unstyled">
-                    <li><a href="index.php"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> Home</a></li>
-                    <li><a href="about.php"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> Company Profile</a></li>
-                    <li><a href="contact.php"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> Contact Us</a></li>
-                    <li><a href="terms-condition.php"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> Terms & Conditions</a></li>
-                    <li><a href="privacy-policy.php"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> Privacy Policy</a></li>
-                    <li><a href="shipping-return.php"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> Shipping & Returns</a></li>
-                    <li><a href="refund-policy.php"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> Refund & Cancellation</a></li>
+                    <li><a href="index.php"><i class="bi bi-chevron-right small me-2"></i> Home</a></li>
+                    <li><a href="about.php"><i class="bi bi-chevron-right small me-2"></i> Company Profile</a></li>
+                    <li><a href="contact.php"><i class="bi bi-chevron-right small me-2"></i> Contact Us</a></li>
+                    <li><a href="terms-condition.php"><i class="bi bi-chevron-right small me-2"></i> Terms &amp; Conditions</a></li>
+                    <li><a href="privacy-policy.php"><i class="bi bi-chevron-right small me-2"></i> Privacy Policy</a></li>
+                    <li><a href="shipping-return.php"><i class="bi bi-chevron-right small me-2"></i> Shipping &amp; Returns</a></li>
+                    <li><a href="refund-policy.php"><i class="bi bi-chevron-right small me-2"></i> Refund &amp; Cancellation</a></li>
                     
                     <!-- Dynamic Custom SEO Pages Links -->
                     <?php
@@ -92,7 +93,7 @@ if (isset($conn)) {
                         while ($custom_p = mysqli_fetch_assoc($footer_custom_pages)) {
                             $p_title = !empty($custom_p['breadcrumb_title']) ? $custom_p['breadcrumb_title'] : $custom_p['page_title'];
                     ?>
-                        <li><a href="page.php?slug=<?= htmlspecialchars($custom_p['slug_url']); ?>"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> <?= htmlspecialchars($p_title); ?></a></li>
+                        <li><a href="page.php?slug=<?= htmlspecialchars($custom_p['slug_url']); ?>"><i class="bi bi-chevron-right small me-2"></i> <?= htmlspecialchars($p_title); ?></a></li>
                     <?php
                         }
                     }
@@ -111,16 +112,16 @@ if (isset($conn)) {
                     ?>
                             <li>
                                 <a href="product-details.php?slug=<?= htmlspecialchars($prod_slug); ?>">
-                                    <i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> <?= htmlspecialchars($f_prod['pro_name']); ?>
+                                    <i class="bi bi-chevron-right small me-2"></i> <?= htmlspecialchars($f_prod['pro_name']); ?>
                                 </a>
                             </li>
                         <?php
                         }
                     } else {
                         ?>
-                        <li><a href="products.php"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> Whole Spices</a></li>
-                        <li><a href="products.php"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> Dry Fruits</a></li>
-                        <li><a href="products.php"><i class="bi bi-chevron-right small me-2" style="color: #711b3c;"></i> Premium Nuts</a></li>
+                        <li><a href="products.php"><i class="bi bi-chevron-right small me-2"></i> Whole Spices</a></li>
+                        <li><a href="products.php"><i class="bi bi-chevron-right small me-2"></i> Dry Fruits</a></li>
+                        <li><a href="products.php"><i class="bi bi-chevron-right small me-2"></i> Premium Nuts</a></li>
                     <?php } ?>
                 </ul>
             </div>
@@ -162,25 +163,25 @@ if (isset($conn)) {
                 <!-- Social Media Icons -->
                 <div class="footer-social d-flex gap-3">
                     <?php if ($c_fb != '#'): ?>
-                        <a href="<?= htmlspecialchars($c_fb); ?>" target="_blank" style="background-color: #3b5998;">
+                        <a href="<?= htmlspecialchars($c_fb); ?>" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                             <i class="bi bi-facebook"></i>
                         </a>
                     <?php endif; ?>
 
-                    <?php if (isset($c_instagram) && $c_instagram != '#'): ?>
-                        <a href="<?= htmlspecialchars($c_instagram); ?>" target="_blank" style="background-color: #e1306c;">
+                    <?php if ($c_instagram != '#'): ?>
+                        <a href="<?= htmlspecialchars($c_instagram); ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                             <i class="bi bi-instagram"></i>
                         </a>
                     <?php endif; ?>
 
                     <?php if ($c_linkedin != '#'): ?>
-                        <a href="<?= htmlspecialchars($c_linkedin); ?>" target="_blank" style="background-color: #007bb5;">
+                        <a href="<?= htmlspecialchars($c_linkedin); ?>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                             <i class="bi bi-linkedin"></i>
                         </a>
                     <?php endif; ?>
 
                     <?php if ($c_wp != '#'): ?>
-                        <a href="<?= htmlspecialchars($c_wp); ?>" target="_blank" style="background-color: #25D366;">
+                        <a href="<?= htmlspecialchars($c_wp); ?>" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                             <i class="bi bi-whatsapp"></i>
                         </a>
                     <?php endif; ?>
@@ -191,14 +192,14 @@ if (isset($conn)) {
     </div>
 
     <!-- Copyright & Developer Info -->
-    <div class="py-4 mt-2" style="background-color: #0a0a0a; border-top: 1px solid #222;">
+    <div class="footer-bottom py-4 mt-2">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0" style="color: #888; font-size: 0.9rem;">
-                    &copy; <?= date('Y'); ?> <strong class="text-white">Bhagirath Enterprise</strong>. All rights reserved.
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    &copy; <?= date('Y'); ?> <strong>Bhagirath Enterprise</strong>. All rights reserved.
                 </div>
-                <div class="col-md-6 text-center text-md-end" style="color: #888; font-size: 0.9rem;">
-                    Powered by <a href="https://digitalwebtrackers.com" target="_blank" class="text-decoration-none" style="color: #df6e97; font-weight: 600; transition: 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#df6e97'">digitalwebtrackers.com</a>
+                <div class="col-md-6 text-center text-md-end">
+                    Powered by <a href="https://digitalwebtrackers.com" target="_blank" rel="noopener">digitalwebtrackers.com</a>
                 </div>
             </div>
         </div>
@@ -209,13 +210,13 @@ if (isset($conn)) {
 <div class="floating-contact">
     <!-- Phone Call Floating Button -->
     <?php if (!empty($c_phone) && $c_phone != '#'): ?>
-        <a href="tel:<?= htmlspecialchars(preg_replace('/[^0-9+]/', '', $c_phone)); ?>" class="float-btn float-phone shadow-lg" title="Call Us">
+        <a href="tel:<?= htmlspecialchars(preg_replace('/[^0-9+]/', '', $c_phone)); ?>" class="float-btn float-phone shadow-lg" title="Call Us" aria-label="Call us">
             <i class="bi bi-telephone-fill"></i>
         </a>
     <?php endif; ?>
     <!-- WhatsApp Floating Button -->
     <?php if (!empty($c_wp) && $c_wp != '#'): ?>
-        <a href="<?= htmlspecialchars($c_wp); ?>" target="_blank" class="float-btn float-whatsapp shadow-lg" title="Chat on WhatsApp">
+        <a href="<?= htmlspecialchars($c_wp); ?>" target="_blank" class="float-btn float-whatsapp shadow-lg" title="Chat on WhatsApp" aria-label="Chat on WhatsApp" rel="noopener noreferrer">
             <i class="bi bi-whatsapp"></i>
         </a>
     <?php endif; ?>

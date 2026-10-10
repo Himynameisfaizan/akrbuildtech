@@ -1,6 +1,15 @@
 <?php
 $current_page = basename($_SERVER['PHP_SELF']);
 
+// CSS cache-busting: version tabhi badlega jab file badle.
+// (Pehle ?v=time() tha, isse har page load pe saari CSS files dobara download hoti thi.)
+if (!function_exists('asset_v')) {
+    function asset_v($file) {
+        $path = __DIR__ . '/../' . $file;
+        return file_exists($path) ? filemtime($path) : 1;
+    }
+}
+
 if (!isset($pageTitle)) { 
     $pageTitle = "Bhagirath Enterprise | Premium Agricultural Exports"; 
 }
@@ -16,7 +25,8 @@ $favicon = "assets/images/logo/favicon.png";
 
 $t_phone = "+91-8448211202";
 $t_email = "bhagirathenterprise7@gmail.com";
-$t_fb = "#"; $t_linkedin = "#"; $t_wp = "#";
+$t_fb = "#"; $t_linkedin = "#"; $t_wp = "#"; $t_instagram = "#";
+$cats_dropdown_query = false;
 
 if (isset($conn)) {
     $logo_query = mysqli_query($conn, "SELECT logo_path FROM logos WHERE location = 'header' AND is_active = 1 ORDER BY id DESC LIMIT 1");
@@ -38,6 +48,7 @@ if (isset($conn)) {
         $t_email = !empty($c_info['contact_email']) ? $c_info['contact_email'] : (!empty($c_info['email']) ? $c_info['email'] : $t_email);
         $t_fb = !empty($c_info['facebook']) ? $c_info['facebook'] : $t_fb;
         $t_linkedin = !empty($c_info['linkdin']) ? $c_info['linkdin'] : $t_linkedin;
+        $t_instagram = !empty($c_info['instagram']) ? $c_info['instagram'] : $t_instagram;
         $t_wp = !empty($c_info['wp_number']) ? 'https://wa.me/' . preg_replace('/[^0-9]/', '', $c_info['wp_number']) : $t_wp;
     }
 
@@ -76,17 +87,23 @@ if (isset($conn)) {
     <meta name="google-site-verification" content="eX_sXjETkL7O-emXnSDL6-LirHz1VsbiMIZMyFqgvIw" />
     <link rel="icon" href="<?= htmlspecialchars($favicon); ?>" type="image/x-icon">
 
+    <meta name="theme-color" content="#111111">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="assets/style/include.css?v=<?php echo time() ?>">
-    <link rel="stylesheet" href="assets/style/style.css?v=<?php echo time() ?>">
-    <link rel="stylesheet" href="assets/style/about.css?v=<?php echo time() ?>">
-    <link rel="stylesheet" href="assets/style/blog.css?v=<?php echo time() ?>">
-    <link rel="stylesheet" href="assets/style/contact.css?v=<?php echo time() ?>">
-    <link rel="stylesheet" href="assets/style/gallery.css?v=<?php echo time() ?>">
-    <link rel="stylesheet" href="assets/style/product.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="assets/style/include.css?v=<?= asset_v('assets/style/include.css'); ?>">
+    <link rel="stylesheet" href="assets/style/style.css?v=<?= asset_v('assets/style/style.css'); ?>">
+    <link rel="stylesheet" href="assets/style/about.css?v=<?= asset_v('assets/style/about.css'); ?>">
+    <link rel="stylesheet" href="assets/style/blog.css?v=<?= asset_v('assets/style/blog.css'); ?>">
+    <link rel="stylesheet" href="assets/style/contact.css?v=<?= asset_v('assets/style/contact.css'); ?>">
+    <link rel="stylesheet" href="assets/style/gallery.css?v=<?= asset_v('assets/style/gallery.css'); ?>">
+    <link rel="stylesheet" href="assets/style/product.css?v=<?= asset_v('assets/style/product.css'); ?>">
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JGVQX47GN"></script>
     <script>
@@ -143,9 +160,6 @@ if (isset($conn)) {
     
 </head>
 <body>
-    
-</head>
-<body>
 
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJCRLJB3"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -160,9 +174,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             <div class="col-md-5 text-end topbar-right">
                 <span class="me-2 text-white-50 small">Follow Us:</span>
-                <?php if($t_fb != '#') echo "<a href='$t_fb' target='_blank'><i class='bi bi-facebook'></i></a>"; ?>
-                <?php if($t_linkedin != '#') echo "<a href='$t_linkedin' target='_blank'><i class='bi bi-linkedin'></i></a>"; ?>
-                <?php if($t_wp != '#') echo "<a href='$t_wp' target='_blank'><i class='bi bi-whatsapp'></i></a>"; ?>
+                <?php if ($t_fb != '#'): ?><a href="<?= htmlspecialchars($t_fb); ?>" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a><?php endif; ?>
+                <?php if ($t_instagram != '#'): ?><a href="<?= htmlspecialchars($t_instagram); ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a><?php endif; ?>
+                <?php if ($t_linkedin != '#'): ?><a href="<?= htmlspecialchars($t_linkedin); ?>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a><?php endif; ?>
+                <?php if ($t_wp != '#'): ?><a href="<?= htmlspecialchars($t_wp); ?>" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a><?php endif; ?>
             </div>
         </div>
     </div>
@@ -172,7 +187,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="container">
         
         <a class="navbar-brand d-flex align-items-center" href="index.php" style="max-width: 70vw;">
-            <img src="<?= htmlspecialchars($header_logo); ?>" alt="Bhagirath Enterprise Logo" class="logo-animate img-fluid" style="max-height: 65px; object-fit: contain;" onerror="this.src='assets/images/logo/logo.png'">
+            <img src="<?= htmlspecialchars($header_logo); ?>" alt="Bhagirath Enterprise Logo" class="site-logo" onerror="this.onerror=null;this.src='assets/images/logo/logo.png'">
         </a>
         
         <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -194,12 +209,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </a>
     <ul class="dropdown-menu border-0 shadow-lg" aria-labelledby="categoriesDropdown">
         <?php 
-        $cats_dropdown_query = mysqli_query($conn, "SELECT * FROM categories WHERE status = 1");
-        if (isset($cats_dropdown_query) && mysqli_num_rows($cats_dropdown_query) > 0) {
+        if ($cats_dropdown_query && mysqli_num_rows($cats_dropdown_query) > 0) {
             while($cat = mysqli_fetch_assoc($cats_dropdown_query)) {
-                $isActiveCat = (isset($_GET['slug']) && $_GET['slug'] == $cat['slug_url']) ? 'active-dropdown-item' : '';
+                $isActiveCat = ($current_page == 'category.php' && isset($_GET['slug']) && $_GET['slug'] == $cat['slug_url']) ? 'active-dropdown-item' : '';
         ?>
-            <li><a class="dropdown-item <?= $isActiveCat; ?>" href="category.php?slug=<?= $cat['slug_url']; ?>"><?= htmlspecialchars($cat['categories']); ?></a></li>
+            <li><a class="dropdown-item <?= $isActiveCat; ?>" href="category.php?slug=<?= urlencode($cat['slug_url']); ?>"><?= htmlspecialchars($cat['categories']); ?></a></li>
         <?php 
             }
         } 

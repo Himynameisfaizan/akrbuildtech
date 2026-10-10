@@ -1,15 +1,20 @@
 <?php
-$contact_query = mysqli_query($conn, "SELECT map FROM contacts ORDER BY id DESC LIMIT 1");
-$contactInfo = mysqli_fetch_assoc($contact_query);
+$contactInfo = [];
+if (isset($conn)) {
+    $contact_query = mysqli_query($conn, "SELECT map FROM contacts ORDER BY id DESC LIMIT 1");
+    if ($contact_query) {
+        $contactInfo = mysqli_fetch_assoc($contact_query) ?: [];
+    }
+}
 ?>
 
 <section class="custom-inquiry-section">
     <div class="container">
         <!-- Center Header -->
         <div class="text-center mb-5">
-            <span class="text-uppercase" style="color: #dfb122; font-weight: 600; letter-spacing: 1.5px; font-size: 0.9rem;">GET IN TOUCH</span>
-            <h2 class="mt-2" style="font-weight: 700; font-size: 2.5rem; color: #222;">Request a Callback or Quote</h2>
-            <div style="width: 60px; height: 3px; background-color: #dfb122; margin: 15px auto 0;"></div>
+            <span class="inquiry-eyebrow">GET IN TOUCH</span>
+            <h2 class="inquiry-heading mt-2">Request a Callback or Quote</h2>
+            <div class="inquiry-rule"></div>
         </div>
 
         <div class="row g-0 shadow-lg rounded-3">
@@ -33,27 +38,27 @@ $contactInfo = mysqli_fetch_assoc($contact_query);
             <div class="col-lg-6">
                 <div class="custom-dark-card p-4 p-md-5">
                     <h3 class="text-white mb-2" style="font-weight: 600; font-size: 1.8rem;">Send Your Inquiry</h3>
-                    <p class="mb-4" style="color: #94a3b8; font-size: 0.95rem;">Fill out the form below, and our export experts will get back to you promptly.</p>
+                    <p class="mb-4" style="color: var(--on-dark-muted); font-size: 0.95rem;">Fill out the form below, and our export experts will get back to you promptly.</p>
 
                     <form action="inquiry-process.php" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <input type="text" name="name" class="form-control custom-dark-input" placeholder="Full Name *" required>
+                                <input type="text" name="name" class="form-control custom-dark-input" placeholder="Full Name *" aria-label="Full name" autocomplete="name" required>
                             </div>
                             <div class="col-md-6">
-                                <input type="email" name="email" class="form-control custom-dark-input" placeholder="Email Address *" required>
+                                <input type="email" name="email" class="form-control custom-dark-input" placeholder="Email Address *" aria-label="Email address" autocomplete="email" required>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="phone" class="form-control custom-dark-input" placeholder="Phone / WhatsApp *" required>
+                                <input type="text" name="phone" class="form-control custom-dark-input" placeholder="Phone / WhatsApp *" aria-label="Phone or WhatsApp number" autocomplete="tel" required>
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="subject" class="form-control custom-dark-input" placeholder="Subject / Product Name *" required>
+                                <input type="text" name="subject" class="form-control custom-dark-input" placeholder="Subject / Product Name *" aria-label="Subject or product name" required>
                             </div>
                             <div class="col-12">
-                                <textarea name="message" class="form-control custom-dark-input" placeholder="Tell us about your requirements... *" style="height: 120px; resize: none;" required></textarea>
+                                <textarea name="message" class="form-control custom-dark-input" placeholder="Tell us about your requirements... *" aria-label="Your requirements" style="height: 120px; resize: none;" required></textarea>
                             </div>
                             <div class="col-12 mt-4">
-                                <button type="submit" class="btn w-100 btn-golden py-3 text-uppercase">
+                                <button type="submit" class="btn w-100 btn-brand py-3 text-uppercase">
                                     Submit Inquiry <i class="bi bi-send-fill ms-2"></i>
                                 </button>
                             </div>

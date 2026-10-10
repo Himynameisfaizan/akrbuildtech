@@ -105,7 +105,7 @@ include("includes/header.php");
                 <div class="slide-bg" style="background-image: url('assets/images/banner1.jpg');"></div>
                 <div class="carousel-caption">
                     <div class="container">
-                        <h2 class="hero-title">Premium Indian Spices <br><span style="color: #711b3c;">& Dry Fruits</span></h2>
+                        <h2 class="hero-title">Premium Indian Spices <br><span class="hero-accent">&amp; Dry Fruits</span></h2>
                         <p>Bhagirath Enterprise exports the finest quality agricultural products worldwide with unmatched purity.</p>
                         <div>
                             <a href="products.php" class="btn-primary-custom">Explore Products</a>
@@ -145,7 +145,7 @@ include("includes/header.php");
                 </div>
             </div>
             <div class="col-lg-6 ps-lg-5">
-                <span class="text-uppercase" style="color: #711b3c; font-size: 14px; font-weight: 600; letter-spacing: 1px;">Who We Are</span>
+                <span class="section-eyebrow">Who We Are</span>
 
                 <!-- Dynamic Title from database -->
                 <h1 class="section-title mb-4 h2">
@@ -165,7 +165,7 @@ include("includes/header.php");
                     ?>
                 </div>
 
-                <a href="about.php" class="btn btn-quote" style="background-color:#222222; border-color:#222222; color: white; padding: 10px 25px; border-radius: 5px;">Read More About Us</a>
+                <a href="about.php" class="btn btn-ink">Read More About Us</a>
             </div>
         </div>
     </div>
@@ -175,7 +175,7 @@ include("includes/header.php");
 <section class="section-padding bg-light-grey">
     <div class="container">
         <div class="text-center mb-5 d-flex flex-column">
-            <span class="text-uppercase" style="color: #711b3c; font-size: 14px; font-weight: 600; letter-spacing: 1px;">Shop By Category</span>
+            <span class="section-eyebrow">Shop By Category</span>
             <h2 class="section-title mx-auto">Our Premium Categories</h2>
             <p class="text-muted-custom mt-3 max-w-700 mx-auto" style="max-width: 600px;">Explore our diverse range of high-quality, farm-fresh agricultural categories, carefully sourced to meet global standards.</p>
         </div>
@@ -188,12 +188,12 @@ include("includes/header.php");
                     $catSlug = !empty($cat['slug_url']) ? $cat['slug_url'] : $cat['cate_id'];
             ?>
                     <div class="col-lg-4 col-md-6">
-                        <div class="service-card h-100 bg-white shadow-sm rounded overflow-hidden text-center">
+                        <div class="service-card h-100 bg-white overflow-hidden text-center">
                             <div class="service-img-container" style="height: 250px; overflow: hidden; background-color: #f8f9fa;">
-                                <img src="<?= htmlspecialchars($catImg) ?>" alt="<?= htmlspecialchars($cat['categories']) ?>" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/black.png'">
+                                <img src="<?= htmlspecialchars($catImg) ?>" loading="lazy" decoding="async" alt="<?= htmlspecialchars($cat['categories']) ?>" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/black.png'">
                             </div>
                             <div class="card-body p-4">
-                                <h3 class="service-title" style="color: #222222; font-weight: 700; font-size: 1.5rem;"><?= htmlspecialchars($cat['categories']) ?></h3>
+                                <h3 class="service-title" style="font-size: 1.5rem;"><?= htmlspecialchars($cat['categories']) ?></h3>
                                 <p class="text-muted-custom small mb-4">
                                     <?= htmlspecialchars(substr($cat['meta_desc'], 0, 80)) ?>...
                                 </p>
@@ -215,7 +215,7 @@ include("includes/header.php");
 <section class="section-padding">
     <div class="container">
         <div class="text-center mb-5 d-flex flex-column">
-            <span class="text-uppercase" style="color: #711b3c; font-size: 14px; font-weight: 600; letter-spacing: 1px;">Why Bhagirath Enterprise</span>
+            <span class="section-eyebrow">Why Bhagirath Enterprise</span>
             <h2 class="section-title mx-auto">The Trusted Choice for Global Exports</h2>
         </div>
 
@@ -253,11 +253,11 @@ include("includes/header.php");
 </section>
 
 <!-- Dynamic Products Section -->
-<section class="section-padding" style="background-color: #ffffff;">
+<section class="section-padding bg-light-grey">
     <div class="container">
         <div class="d-flex justify-content-between align-items-end mb-5">
             <div>
-                <span class="text-uppercase d-flex flex-column" style="color: #711b3c; font-size: 14px; font-weight: 600; letter-spacing: 1px;">Our Produce</span>
+                <span class="section-eyebrow">Our Produce</span>
                 <h2 class="section-title mb-0">Premium Export Products</h2>
             </div>
             <div class="d-none d-md-block">
@@ -275,11 +275,11 @@ include("includes/header.php");
                     $productSlug = !empty($prod['slug_url']) ? $prod['slug_url'] : $prod['id'];
             ?>
                     <div class="col-lg-3 col-md-6">
-                        <div class="product-card h-100 shadow-sm border rounded overflow-hidden">
+                        <div class="product-card h-100 overflow-hidden">
                             <span class="product-badge">Export Grade</span>
                             <div class="product-img-wrapper" style="height: 200px; overflow: hidden;">
                                 <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>">
-                                    <img src="<?= htmlspecialchars($proImg) ?>" alt="<?= htmlspecialchars($prod['pro_name']) ?>" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/black.png'">
+                                    <img src="<?= htmlspecialchars($proImg) ?>" loading="lazy" decoding="async" alt="<?= htmlspecialchars($prod['pro_name']) ?>" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/black.png'">
                                 </a>
                             </div>
                             <div class="p-4">
@@ -292,7 +292,7 @@ include("includes/header.php");
                                     <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="view-details-link">View Details <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i></a>
                                 </div>
                                 <div class="d-flex gap-2">
-                                    <a href="tel:+918448211202" class="btn-call" title="Call for inquiry">
+                                    <a href="tel:<?= htmlspecialchars(preg_replace('/[^0-9+]/', '', $t_phone)); ?>" class="btn-call" title="Call for inquiry" aria-label="Call for inquiry">
                                         <i class="bi bi-telephone-fill"></i>
                                     </a>
                                     <a href="contact.php?product=<?= urlencode($prod['pro_name']) ?>" class="btn btn-quote-full flex-grow-1 text-center py-2 text-decoration-none">Inquire Now</a>
@@ -315,10 +315,10 @@ include("includes/header.php");
 </section>
 
 <!-- Dynamic Testimonials Section -->
-<section class="section-padding" style="background-color: #fdfdfd; border-top: 1px solid #f0f0f0;">
+<section class="section-padding">
     <div class="container">
         <div class="text-center mb-5 d-flex flex-column">
-            <span class="text-uppercase" style="color: #711b3c; font-size: 14px; font-weight: 600; letter-spacing: 1px;">Client Feedback</span>
+            <span class="section-eyebrow">Client Feedback</span>
             <h2 class="section-title mx-auto">What Our Trusted Partners Say</h2>
         </div>
 
@@ -330,19 +330,19 @@ include("includes/header.php");
             ?>
                     <div class="col-lg-4 col-md-6">
                         <div class="testimonial-card p-4 bg-white shadow-sm rounded-4 h-100 position-relative transition-up">
-                            <i class="bi bi-quote position-absolute" style="font-size: 5rem; color: rgba(113, 27, 60, 0.05); top: -10px; right: 20px; z-index: 0;"></i>
+                            <i class="bi bi-quote position-absolute testimonial-quote-icon"></i>
 
                             <div class="position-relative z-1">
                                 <div class="d-flex align-items-center mb-4">
                                     <div class="test-img-wrap rounded-circle overflow-hidden me-3 shadow-sm" style="width: 65px; height: 65px; border: 3px solid #f8f9fa;">
-                                        <img src="<?= htmlspecialchars($testImg) ?>" alt="<?= htmlspecialchars($test['name']) ?>" class="w-100 h-100" style="object-fit: cover;" onerror="this.src='assets/images/default-avatar.png'">
+                                        <img src="<?= htmlspecialchars($testImg) ?>" loading="lazy" decoding="async" alt="<?= htmlspecialchars($test['name']) ?>" class="w-100 h-100" style="object-fit: cover;" onerror="this.src='assets/images/default-avatar.png'">
                                     </div>
                                     <div>
-                                        <h4 class="mb-0" style="color: #222222; font-weight: 700; font-size: 1.1rem;"><?= htmlspecialchars($test['name']) ?></h4>
-                                        <span class="text-muted small fw-semibold" style="color: #711b3c !important;"><?= htmlspecialchars($test['designation']) ?></span>
+                                        <h4 class="mb-0" style="color: var(--ink); font-weight: 700; font-size: 1.1rem;"><?= htmlspecialchars($test['name']) ?></h4>
+                                        <span class="testimonial-role small fw-semibold"><?= htmlspecialchars($test['designation']) ?></span>
                                     </div>
                                 </div>
-                                <div class="stars mb-2" style="color: #FFD700; font-size: 0.9rem;">
+                                <div class="stars mb-2">
                                     <?php
                                     $rating = intval($test['rating']);
                                     for ($i = 1; $i <= 5; $i++) {
@@ -371,21 +371,23 @@ include("includes/header.php");
 </section>
 
 <!-- Dynamic Brands Slider Section -->
-<section class="brands-slider-section py-5" style="background-color: #f8f9fa; border-top: 1px solid #eaeaea;">
+<section class="brands-slider-section py-5">
     <div class="container">
-        <h2 class="text-center mb-5" style="color: #222222; font-weight: 700; font-size: 1.5rem; letter-spacing: 1px;">OUR TRUSTED CLIENTS & PARTNERS</h2>
+        <h2 class="brands-title text-center mb-5">Our Trusted Clients &amp; Partners</h2>
 
         <div class="brand-slider-container">
-            <div class="brand-slide-track">
+            <div class="brand-slide-track<?= empty($brands_array) ? ' is-static' : '' ?>">
                 <?php if (!empty($brands_array)): ?>
                     <?php
-                    for ($loop = 0; $loop < 2; $loop++):
+                    // Track -50% pe loop hota hai: copies hamesha even hon aur aadha track screen se chauda ho.
+                    $brand_copies = max(1, (int) ceil(8 / count($brands_array))) * 2;
+                    for ($loop = 0; $loop < $brand_copies; $loop++):
                         foreach ($brands_array as $brand):
                             $brandLogo = !empty($brand['logo_path']) ? $brand['logo_path'] : '';
                     ?>
-                            <div class="brand-slide">
+                            <div class="brand-slide"<?= $loop > 0 ? ' aria-hidden="true"' : '' ?>>
                                 <?php if (!empty($brandLogo)): ?>
-                                    <img src="admin/<?= htmlspecialchars($brandLogo) ?>" alt="<?= htmlspecialchars($brand['brand_name']) ?>" title="<?= htmlspecialchars($brand['brand_name']) ?>">
+                                    <img src="admin/<?= htmlspecialchars($brandLogo) ?>" loading="lazy" alt="<?= htmlspecialchars($brand['brand_name']) ?>" title="<?= htmlspecialchars($brand['brand_name']) ?>">
                                 <?php else: ?>
                                     <span class="fw-bold text-dark"><?= htmlspecialchars($brand['brand_name']) ?></span>
                                 <?php endif; ?>
@@ -413,23 +415,23 @@ include("includes/header.php");
 <?php include('includes/inquiry-form.php'); ?>
 
 <!-- 6. FREQUENTLY ASKED QUESTIONS -->
-<section class="section-padding" style="background-color: #fdfdfd;">
+<section class="section-padding bg-light-grey">
     <div class="container">
         <div class="row justify-content-center">
 
             <div class="col-lg-8 reveal">
                 <div class="text-center mb-5">
-                    <span class="sec-subtitle text-uppercase fw-bold" style="color: #E3000F; letter-spacing: 1px; font-size: 14px;">Clear Your Doubts</span>
-                    <h2 class="sec-title" style="color: #17385A; font-weight: 700;">Frequently Asked Questions</h2>
+                    <span class="section-eyebrow">Clear Your Doubts</span>
+                    <h2 class="section-title">Frequently Asked Questions</h2>
                 </div>
 
                 <!-- Bootstrap 5 Accordion -->
-                <div class="accordion faq-accordion shadow-sm" id="exportFaqAccordion">
+                <div class="accordion faq-accordion" id="exportFaqAccordion">
 
                     <!-- FAQ Item 1 -->
-                    <div class="accordion-item border-0 mb-3 rounded overflow-hidden">
+                    <div class="accordion-item">
                         <h3 class="accordion-header" id="faqHeading1">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1" style="font-weight: 600; color: #17385A; background-color: #f8f9fa;">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
                                 Are your agricultural products certified for global export?
                             </button>
                         </h3>
@@ -441,9 +443,9 @@ include("includes/header.php");
                     </div>
 
                     <!-- FAQ Item 2 -->
-                    <div class="accordion-item border-0 mb-3 rounded overflow-hidden">
+                    <div class="accordion-item">
                         <h3 class="accordion-header" id="faqHeading2">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2" style="font-weight: 600; color: #17385A; background-color: #f8f9fa;">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
                                 Do you handle B2B bulk orders and container shipments?
                             </button>
                         </h3>
@@ -455,23 +457,23 @@ include("includes/header.php");
                     </div>
 
                     <!-- FAQ Item 3 -->
-                    <div class="accordion-item border-0 mb-3 rounded overflow-hidden">
+                    <div class="accordion-item">
                         <h3 class="accordion-header" id="faqHeading3">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3" style="font-weight: 600; color: #17385A; background-color: #f8f9fa;">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
                                 What is your Minimum Order Quantity (MOQ)?
                             </button>
                         </h3>
                         <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#exportFaqAccordion">
                             <div class="accordion-body text-muted small">
-                                The Minimum Order Quantity (MOQ) varies depending on the specific product and the shipping method. Please reach out to our sales team at bhagirathenterprise7@gmail.com for exact product-wise MOQs.
+                                The Minimum Order Quantity (MOQ) varies depending on the specific product and the shipping method. Please reach out to our sales team at <a href="mailto:<?= htmlspecialchars($t_email); ?>"><?= htmlspecialchars($t_email); ?></a> for exact product-wise MOQs.
                             </div>
                         </div>
                     </div>
 
                     <!-- FAQ Item 4 -->
-                    <div class="accordion-item border-0 mb-3 rounded overflow-hidden">
+                    <div class="accordion-item">
                         <h3 class="accordion-header" id="faqHeading4">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4" style="font-weight: 600; color: #17385A; background-color: #f8f9fa;">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
                                 Do you offer customized or private label packaging?
                             </button>
                         </h3>
