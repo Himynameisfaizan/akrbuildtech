@@ -30,6 +30,20 @@
   --font-display: "Barlow Condensed", "Barlow", system-ui, sans-serif;
 
   --breadcrumb-image: url("https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=2000&auto=format&fit=crop");
+
+  /* Purane variable names. about/blog/contact/gallery/product.css pehle inhe apne :root mein
+     alag alag (aur ek doosre se takrate hue) define karte the. Ab sirf yahin hain.
+     Naye code mein seedha upar wale tokens use karo. */
+  --bg-light: var(--surface);
+  --text-dark: var(--ink);
+  --text-muted: var(--muted);
+  --border-color: var(--line);
+  --primary-green: var(--brand-deep);
+  --primary-green-dark: var(--ink);
+  --accent-orange: var(--brand-deep);
+  --accent-orange-dark: var(--brand-deep);
+  --primary-brand: var(--brand-deep);
+  --secondary-brand: var(--ink);
 }
 
 body {

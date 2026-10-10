@@ -147,23 +147,19 @@ include("includes/header.php");
             <div class="col-lg-6 ps-lg-5">
                 <span class="section-eyebrow">Who We Are</span>
 
-                <!-- Dynamic Title from database -->
-                <h1 class="section-title mb-4 h2">
-                    <?= !empty($about_data['title']) ? htmlspecialchars($about_data['title']) : 'Exporting the Finest Flavors & Agricultural Wealth of India'; ?>
-                </h1>
+<h1 class="section-title mb-4 h2">
+    <?= !empty($about_data['title']) ? htmlspecialchars($about_data['title']) : 'Delivering Excellence in Infrastructure & Urban Development'; ?>
+</h1>
 
-                <!-- Dynamic Description/Content from database -->
-                <div class="text-muted-custom mb-4">
-                    <?php
-                    if (!empty($about_data['content'])) {
-                        // Agar admin ne rich text / HTML tags ke sath content save kiya hai toh usko render karega
-                        echo $about_data['content'];
-                    } else {
-                        // Fallback text agar table khali ho
-                        echo '<p>At <strong>Bhagirath Enterprise</strong>, we specialize in processing and exporting premium quality whole spices, dry fruits, and authentic Indian agricultural products.</p>';
-                    }
-                    ?>
-                </div>
+<div class="text-muted-custom mb-4">
+    <?php
+    if (!empty($about_data['content'])) {
+        echo $about_data['content'];
+    } else {
+        echo '<p>At <strong>AKR Build Tech</strong>, we specialize in supplying top-tier construction materials and solutions, including premium <strong>AAC Block Jointing Mortar</strong>. We are committed to driving innovation in infrastructure and urban development projects both locally and globally.</p>';
+    }
+    ?>
+</div>
 
                 <a href="about.php" class="btn btn-ink">Read More About Us</a>
             </div>

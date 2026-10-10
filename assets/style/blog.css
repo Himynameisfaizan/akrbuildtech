@@ -1,11 +1,3 @@
-:root {
-  --primary-green: #2b5e2c;
-  --accent-orange: #e67e22;
-  --bg-light: #f9fafb;
-  --text-dark: #1a1a1a;
-  --text-muted: #666666;
-}
-
 .blog-page-section {
   padding: 80px 0;
   background-color: var(--bg-light);
@@ -57,8 +49,8 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  background: var(--accent-orange);
-  color: #fff;
+  background: var(--brand);
+  color: var(--ink);
   padding: 5px 15px;
   border-radius: 30px;
   font-size: 12px;
@@ -80,7 +72,7 @@
   margin-bottom: 15px;
 }
 .featured-meta i {
-  color: var(--primary-green);
+  color: var(--brand-deep);
   margin-right: 5px;
   margin-left: 10px;
 }
@@ -97,7 +89,7 @@
   line-height: 1.3;
 }
 .featured-title:hover {
-  color: var(--primary-green);
+  color: var(--brand-deep);
 }
 .featured-excerpt {
   font-size: 1.1rem;
@@ -153,14 +145,14 @@
   text-decoration: none;
 }
 .blog-title:hover {
-  color: var(--primary-green);
+  color: var(--brand-deep);
 }
 
 .read-more-btn {
   margin-top: auto;
   display: inline-flex;
   align-items: center;
-  color: var(--primary-green);
+  color: var(--brand-deep);
   font-weight: 700;
   font-size: 14px;
   text-decoration: none;
@@ -172,7 +164,7 @@
   transition: transform 0.3s ease;
 }
 .read-more-btn:hover {
-  color: var(--accent-orange);
+  color: var(--ink);
 }
 .read-more-btn:hover i {
   transform: translateX(5px);
@@ -220,7 +212,7 @@
   font-weight: 500;
 }
 .blog-meta-top span i {
-  color: var(--primary-green);
+  color: var(--brand-deep);
   margin-right: 8px;
 }
 
@@ -242,7 +234,7 @@
 .premium-quote {
   background: var(--bg-light);
   padding: 30px 40px;
-  border-left: 5px solid var(--accent-orange);
+  border-left: 5px solid var(--brand);
   border-radius: 0 12px 12px 0;
   font-size: 1.25rem;
   font-style: italic;
@@ -253,7 +245,7 @@
 .premium-quote::before {
   content: "\201C";
   font-size: 80px;
-  color: rgba(230, 126, 34, 0.1);
+  color: rgba(var(--brand-rgb), 0.25);
   position: absolute;
   top: -10px;
   left: 20px;
@@ -283,23 +275,20 @@
   align-items: center;
   color: #fff;
   text-decoration: none;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 .share-btn:hover {
   transform: translateY(-3px);
-  color: #fff;
+  background: var(--brand);
+  color: var(--ink);
 }
-.bg-fb {
-  background: #3b5998;
-}
-.bg-tw {
-  background: #1da1f2;
-}
-.bg-in {
-  background: #0077b5;
-}
+/* Network colors (fb/tw/in/wa) site palette se takra rahe the; ab sab ek style.
+   Purane colors chahiye ho to yahan alag alag background de do. */
+.bg-fb,
+.bg-tw,
+.bg-in,
 .bg-wa {
-  background: #25d366;
+  background: var(--ink);
 }
 
 /* ==============================
@@ -332,7 +321,7 @@
   bottom: 0;
   width: 40px;
   height: 3px;
-  background: var(--primary-green);
+  background: var(--brand);
 }
 
 /* Search Widget */
@@ -352,12 +341,17 @@
   right: 5px;
   top: 5px;
   bottom: 5px;
-  background: var(--primary-green);
-  color: white;
+  background: var(--ink);
+  color: #fff;
   border: none;
   border-radius: 6px;
   padding: 0 15px;
   cursor: pointer;
+  transition: all 0.3s;
+}
+.sidebar-search button:hover {
+  background: var(--brand);
+  color: var(--ink);
 }
 
 /* Categories Widget */
@@ -382,7 +376,7 @@
   transition: color 0.3s;
 }
 .sidebar-cats a:hover {
-  color: var(--accent-orange);
+  color: var(--brand-deep);
 }
 
 /* Recent Posts Widget */
@@ -410,7 +404,7 @@
   transition: color 0.3s;
 }
 .recent-post-info h4 a:hover {
-  color: var(--primary-green);
+  color: var(--brand-deep);
 }
 .recent-post-info span {
   font-size: 12px;
