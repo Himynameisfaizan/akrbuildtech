@@ -1,4 +1,4 @@
-# robots.txt for Bhagirath Enterprise
+# robots.txt for Akr Build Tech
 
 User-agent: *
 Disallow: /admin/
@@ -10,4 +10,4 @@ Disallow: /inquiry-process.php
 Allow: /
 
 # Sitemap link
-Sitemap: https://royalblue-gazelle-538620.hostingersite.com/sitemap.xml
+Sitemap: https://akrbuildtech.com/sitemap.xml
