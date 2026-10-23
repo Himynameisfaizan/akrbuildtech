@@ -57,14 +57,15 @@ if (isset($conn)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title><?= htmlspecialchars($pageTitle); ?></title>
     <meta name="description" content="<?= htmlspecialchars($meta_description); ?>">
     <meta name="keywords" content="<?= htmlspecialchars($meta_keywords); ?>">
-    
+
     <?php
     $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
     $domain = $_SERVER['HTTP_HOST'];
@@ -83,20 +84,29 @@ if (isset($conn)) {
     }
     ?>
     <link rel="canonical" href="<?= $canonical_url; ?>" />
-    
+
     <meta name="google-site-verification" content="eX_sXjETkL7O-emXnSDL6-LirHz1VsbiMIZMyFqgvIw" />
     <link rel="icon" href="<?= htmlspecialchars($favicon); ?>" type="image/x-icon">
 
     <meta name="theme-color" content="#111111">
 
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap"
+        rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="assets/style/include.css?v=<?= asset_v('assets/style/include.css'); ?>">
     <link rel="stylesheet" href="assets/style/style.css?v=<?= asset_v('assets/style/style.css'); ?>">
     <link rel="stylesheet" href="assets/style/about.css?v=<?= asset_v('assets/style/about.css'); ?>">
@@ -104,21 +114,33 @@ if (isset($conn)) {
     <link rel="stylesheet" href="assets/style/contact.css?v=<?= asset_v('assets/style/contact.css'); ?>">
     <link rel="stylesheet" href="assets/style/gallery.css?v=<?= asset_v('assets/style/gallery.css'); ?>">
     <link rel="stylesheet" href="assets/style/product.css?v=<?= asset_v('assets/style/product.css'); ?>">
-    
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JGVQX47GN"></script>
     <script>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-PJCRLJB3');
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PJCRLJB3');
     </script>
-  
+
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-3JGVQX47GN');
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-3JGVQX47GN');
     </script>
 
     <?php if ($current_page == 'index.php' || $current_page == '') { ?>
@@ -157,82 +179,102 @@ if (isset($conn)) {
         echo $page_schema;
     } 
     ?>
-    
+
 </head>
+
 <body>
 
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJCRLJB3"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJCRLJB3" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
 
-<div class="topbar d-none d-lg-block shadow-sm">
-    <div class="container">
-        <div class="row align-items-center py-2">
-            <div class="col-md-7 topbar-left">
-                <a href="mailto:<?= htmlspecialchars($t_email); ?>"><i class="bi bi-envelope-fill me-1"></i> <?= htmlspecialchars($t_email); ?></a>
-                <span class="mx-2 text-white-50">|</span>
-                <a href="tel:<?= preg_replace('/[^0-9+]/', '', $t_phone); ?>"><i class="bi bi-telephone-fill me-1"></i> <?= htmlspecialchars($t_phone); ?></a>
-            </div>
-            <div class="col-md-5 text-end topbar-right">
-                <span class="me-2 text-white-50 small">Follow Us:</span>
-                <?php if ($t_fb != '#'): ?><a href="<?= htmlspecialchars($t_fb); ?>" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a><?php endif; ?>
-                <?php if ($t_instagram != '#'): ?><a href="<?= htmlspecialchars($t_instagram); ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a><?php endif; ?>
-                <?php if ($t_linkedin != '#'): ?><a href="<?= htmlspecialchars($t_linkedin); ?>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a><?php endif; ?>
-                <?php if ($t_wp != '#'): ?><a href="<?= htmlspecialchars($t_wp); ?>" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a><?php endif; ?>
+    <div class="topbar d-none d-lg-block shadow-sm">
+        <div class="container">
+            <div class="row align-items-center py-2">
+                <div class="col-md-7 topbar-left">
+                    <a href="mailto:<?= htmlspecialchars($t_email); ?>"><i class="bi bi-envelope-fill me-1"></i>
+                        <?= htmlspecialchars($t_email); ?></a>
+                    <span class="mx-2 text-white-50">|</span>
+                    <a href="tel:<?= preg_replace('/[^0-9+]/', '', $t_phone); ?>"><i
+                            class="bi bi-telephone-fill me-1"></i> <?= htmlspecialchars($t_phone); ?></a>
+                </div>
+                <div class="col-md-5 text-end topbar-right">
+                    <span class="me-2 text-white-50 small">Follow Us:</span>
+                    <?php if ($t_fb != '#'): ?><a href="<?= htmlspecialchars($t_fb); ?>" target="_blank"
+                        rel="noopener noreferrer" aria-label="Facebook"><i
+                            class="bi bi-facebook"></i></a><?php endif; ?>
+                    <?php if ($t_instagram != '#'): ?><a href="<?= htmlspecialchars($t_instagram); ?>" target="_blank"
+                        rel="noopener noreferrer" aria-label="Instagram"><i
+                            class="bi bi-instagram"></i></a><?php endif; ?>
+                    <?php if ($t_linkedin != '#'): ?><a href="<?= htmlspecialchars($t_linkedin); ?>" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn"><i
+                            class="bi bi-linkedin"></i></a><?php endif; ?>
+                    <?php if ($t_wp != '#'): ?><a href="<?= htmlspecialchars($t_wp); ?>" target="_blank"
+                        rel="noopener noreferrer" aria-label="WhatsApp"><i
+                            class="bi bi-whatsapp"></i></a><?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<nav class="navbar navbar-expand-lg custom-navbar sticky-top">
-    <div class="container">
-        
-        <a class="navbar-brand d-flex align-items-center" href="index.php" style="max-width: 70vw;">
-            <img src="<?= htmlspecialchars($header_logo); ?>" alt="Bhagirath Enterprise Logo" class="site-logo" onerror="this.onerror=null;this.src='assets/images/logo/logo.png'">
-        </a>
-        
-        <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-            <ul class="navbar-nav align-items-lg-center">
-                <li class="nav-item">
-                    <a class="nav-link <?= ($current_page == 'index.php') ? 'active' : ''; ?>" href="index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?= ($current_page == 'about.php') ? 'active' : ''; ?>" href="about.php">About Us</a>
-                </li>
-                
-                <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle <?= ($current_page == 'category.php') ? 'active' : ''; ?>" href="#" id="categoriesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        Categories
-    </a>
-    <ul class="dropdown-menu border-0 shadow-lg" aria-labelledby="categoriesDropdown">
-        <?php 
+    <nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+        <div class="container">
+
+            <a class="navbar-brand d-flex align-items-center" href="index.php" style="max-width: 70vw;">
+                <img src="<?= htmlspecialchars($header_logo); ?>" alt="Bhagirath Enterprise Logo" class="site-logo"
+                    onerror="this.onerror=null;this.src='assets/images/logo/logo.png'">
+            </a>
+
+            <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($current_page == 'index.php') ? 'active' : ''; ?>"
+                            href="index.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($current_page == 'about.php') ? 'active' : ''; ?>"
+                            href="about.php">About Us</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle <?= ($current_page == 'category.php') ? 'active' : ''; ?>"
+                            href="#" id="categoriesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow-lg" aria-labelledby="categoriesDropdown">
+                            <?php 
         if ($cats_dropdown_query && mysqli_num_rows($cats_dropdown_query) > 0) {
             while($cat = mysqli_fetch_assoc($cats_dropdown_query)) {
                 $isActiveCat = ($current_page == 'category.php' && isset($_GET['slug']) && $_GET['slug'] == $cat['slug_url']) ? 'active-dropdown-item' : '';
         ?>
-            <li><a class="dropdown-item <?= $isActiveCat; ?>" href="category.php?slug=<?= urlencode($cat['slug_url']); ?>"><?= htmlspecialchars($cat['categories']); ?></a></li>
-        <?php 
+                            <li><a class="dropdown-item <?= $isActiveCat; ?>"
+                                    href="category.php?slug=<?= urlencode($cat['slug_url']); ?>"><?= htmlspecialchars($cat['categories']); ?></a>
+                            </li>
+                            <?php 
             }
         } 
         ?>
-    </ul>
-</li>
-                
-                <li class="nav-item">
-                    <a class="nav-link <?= ($current_page == 'blog.php' || $current_page == 'blog-details.php') ? 'active' : ''; ?>" href="blog.php">Blog</a>
-                </li> 
-                <li class="nav-item">
-                    <a class="nav-link <?= ($current_page == 'contact.php') ? 'active' : ''; ?>" href="contact.php">Contact Us</a>
-                </li>
-                <li class="nav-item ms-lg-4 mt-3 mt-lg-0 mb-3 mb-lg-0">
-                    <a class="btn btn-quote" href="contact.php">Get a Quote</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+                        </ul>
+                    </li>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($current_page == 'blog.php' || $current_page == 'blog-details.php') ? 'active' : ''; ?>"
+                            href="blog.php">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($current_page == 'contact.php') ? 'active' : ''; ?>"
+                            href="contact.php">Contact Us</a>
+                    </li>
+                    <li class="nav-item ms-lg-4 mt-3 mt-lg-0 mb-3 mb-lg-0">
+                        <a class="btn btn-quote" href="contact.php">Get a Quote</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
