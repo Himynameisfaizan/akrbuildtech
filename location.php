@@ -169,7 +169,7 @@ body.location-page {
     margin-bottom: 20px;
     flex-grow: 1;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
