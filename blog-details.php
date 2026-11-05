@@ -142,7 +142,7 @@ include 'includes/breadcrumb.php';
                                 $isActive = ($sideCat['cate_id'] == $cate_id || $sideCat['slug_url'] == $slug) ? 'fw-bold active-cat' : 'text-muted';
                             ?>
                             <li class="mb-2 pb-2 border-bottom" style="border-color: #f8f9fa !important;">
-                                <a href="category.php?slug=<?= htmlspecialchars($sideCat['slug_url']) ?>"
+                                <a href="category/<?= htmlspecialchars($sideCat['slug_url']) ?>"
                                     class="text-decoration-none d-flex justify-content-between align-items-center category-link <?= $isActive ?>"
                                     style="font-size: 0.95rem;">
                                     <span><i class="fa-solid fa-angle-right me-2" style="font-size: 0.75rem;"></i>
@@ -171,7 +171,7 @@ include 'includes/breadcrumb.php';
                                 alt="<?php echo htmlspecialchars($recentBlog['title']); ?>">
                             <div class="recent-post-info">
                                 <h4><a
-                                        href="blog-details.php?slug=<?php echo $recentBlog['slug']; ?>"><?php echo htmlspecialchars($recentBlog['title']); ?></a>
+                                        href="blog/<?php echo $recentBlog['slug']; ?>"><?php echo htmlspecialchars($recentBlog['title']); ?></a>
                                 </h4>
                                 <span><?php echo $r_date; ?></span>
                             </div>

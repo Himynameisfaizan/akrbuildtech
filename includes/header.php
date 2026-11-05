@@ -1,8 +1,49 @@
 <?php
+// Agar kisi page par connect.php include nahi hai toh automatically include karein
+if (!isset($conn)) {
+    $connect_path = __DIR__ . '/../config/connect.php';
+    if (file_exists($connect_path)) {
+        require_once $connect_path;
+    }
+}
+
 $current_page = basename($_SERVER['PHP_SELF']);
 
-// CSS cache-busting: version tabhi badlega jab file badle.
-// (Pehle ?v=time() tha, isse har page load pe saari CSS files dobara download hoti thi.)
+// 1. Base URL & Protocol Setup (No syntax errors)
+$is_https = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443);
+$protocol = $is_https ? "https://" : "http://";
+$raw_host = $_SERVER['HTTP_HOST'];
+
+if (strpos($raw_host, 'localhost') !== false || strpos($raw_host, '127.0.0.1') !== false) {
+    $base_path = '/office_php_project/akrbuild/';
+    $base_url = isset($site) ? $site : ($protocol . $raw_host . $base_path);
+    $canonical_base = $protocol . 'www.localhost' . $base_path;
+} else {
+    $base_path = '/';
+    $clean_host = (strpos($raw_host, 'www.') === 0) ? $raw_host : 'www.' . $raw_host;
+    $base_url = "https://" . $clean_host . $base_path;
+    $canonical_base = $base_url;
+}
+
+// 2. Canonical URL Generator (Clean Slugs + www)
+if ($current_page == 'index.php' || $current_page == '') {
+    $canonical_url = $canonical_base;
+} elseif ($current_page == 'category.php' && !empty($_GET['slug'])) {
+    $canonical_url = $canonical_base . 'category/' . urlencode($_GET['slug']);
+} elseif ($current_page == 'product-details.php' && !empty($_GET['slug'])) {
+    $canonical_url = $canonical_base . 'product/' . urlencode($_GET['slug']);
+} elseif ($current_page == 'products.php' && !empty($_GET['category'])) {
+    $canonical_url = $canonical_base . 'products/category/' . urlencode($_GET['category']);
+} elseif ($current_page == 'blog-details.php' && !empty($_GET['slug'])) {
+    $canonical_url = $canonical_base . 'blog/' . urlencode($_GET['slug']);
+} elseif ($current_page == 'page.php' && !empty($_GET['slug'])) {
+    $canonical_url = $canonical_base . 'page/' . urlencode($_GET['slug']);
+} else {
+    $clean_page_name = preg_replace('/\.php$/', '', $current_page);
+    $canonical_url = $canonical_base . $clean_page_name;
+}
+
+// 3. CSS Cache-Busting Function
 if (!function_exists('asset_v')) {
     function asset_v($file) {
         $path = __DIR__ . '/../' . $file;
@@ -10,35 +51,40 @@ if (!function_exists('asset_v')) {
     }
 }
 
-if (!isset($pageTitle)) { 
-    $pageTitle = "Bhagirath Enterprise | Premium Agricultural Exports"; 
+// 4. Default Meta Tags
+if (!isset($pageTitle) || empty($pageTitle)) { 
+    $pageTitle = "AKR Buildtech | Strength In Every Drops"; 
 }
-if (!isset($meta_description)) { 
-    $meta_description = "Bhagirath Enterprise is a trusted global exporter of premium quality dry fruits, whole spices, and authentic Indian agricultural products."; 
+if (!isset($meta_description) || empty($meta_description)) { 
+    $meta_description = "AKR Buildtech is a trusted supplier and exporter providing high-quality products across India."; 
 }
-if (!isset($meta_keywords)) { 
-    $meta_keywords = "Bhagirath Enterprise, agricultural exports, Indian spices, dry fruits exporter, wholesale spices"; 
+if (!isset($meta_keywords) || empty($meta_keywords)) { 
+    $meta_keywords = "AKR Buildtech, wholesale supplier Delhi, bulk supplier India"; 
 }
 
 $header_logo = "assets/images/logo/logo.png"; 
 $favicon = "assets/images/logo/favicon.png"; 
 
-$t_phone = "+91-8448211202";
-$t_email = "bhagirathenterprise7@gmail.com";
+$t_phone = "+91-9213519991";
+$t_email = "akrbuildtech05@gmail.com";
 $t_fb = "#"; $t_linkedin = "#"; $t_wp = "#"; $t_instagram = "#";
 $cats_dropdown_query = false;
 
 if (isset($conn)) {
-    $logo_query = mysqli_query($conn, "SELECT logo_path FROM logos WHERE location = 'header' AND is_active = 1 ORDER BY id DESC LIMIT 1");
-    if ($logo_query && mysqli_num_rows($logo_query) > 0) {
-        $logo_data = mysqli_fetch_assoc($logo_query);
-        $header_logo = 'admin/uploads/' . $logo_data['logo_path'];
-    }
+    // Check if logos table exists before querying
+    $logo_check = mysqli_query($conn, "SHOW TABLES LIKE 'logos'");
+    if ($logo_check && mysqli_num_rows($logo_check) > 0) {
+        $logo_query = mysqli_query($conn, "SELECT logo_path FROM logos WHERE location = 'header' AND is_active = 1 ORDER BY id DESC LIMIT 1");
+        if ($logo_query && mysqli_num_rows($logo_query) > 0) {
+            $logo_data = mysqli_fetch_assoc($logo_query);
+            $header_logo = 'admin/uploads/' . $logo_data['logo_path'];
+        }
 
-    $fav_query = mysqli_query($conn, "SELECT logo_path FROM logos WHERE location = 'favicon' AND is_active = 1 ORDER BY id DESC LIMIT 1");
-    if ($fav_query && mysqli_num_rows($fav_query) > 0) {
-        $fav_data = mysqli_fetch_assoc($fav_query);
-        $favicon = 'admin/uploads/' . $fav_data['logo_path'];
+        $fav_query = mysqli_query($conn, "SELECT logo_path FROM logos WHERE location = 'favicon' AND is_active = 1 ORDER BY id DESC LIMIT 1");
+        if ($fav_query && mysqli_num_rows($fav_query) > 0) {
+            $fav_data = mysqli_fetch_assoc($fav_query);
+            $favicon = 'admin/uploads/' . $fav_data['logo_path'];
+        }
     }
 
     $contact_query = mysqli_query($conn, "SELECT * FROM contacts ORDER BY id DESC LIMIT 1");
@@ -62,58 +108,40 @@ if (isset($conn)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <base href="<?= htmlspecialchars($base_url); ?>">
+
     <title><?= htmlspecialchars($pageTitle); ?></title>
     <meta name="description" content="<?= htmlspecialchars($meta_description); ?>">
     <meta name="keywords" content="<?= htmlspecialchars($meta_keywords); ?>">
 
-    <?php
-    $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-    $domain = $_SERVER['HTTP_HOST'];
-    $uri_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    
-    $canonical_url = $protocol . $domain . $uri_path;
-
-    if ($current_page == 'index.php') {
-        $canonical_url = $protocol . $domain . "/";
-    }
-    
-    if (($current_page == 'blog-details.php' || $current_page == 'product-details.php') && !empty($_GET['slug'])) {
-        $canonical_url .= "?slug=" . htmlspecialchars($_GET['slug']);
-    } elseif ($current_page == 'products.php' && !empty($_GET['category'])) {
-        $canonical_url .= "?category=" . htmlspecialchars($_GET['category']);
-    }
-    ?>
-    <link rel="canonical" href="<?= $canonical_url; ?>" />
+    <link rel="canonical" href="<?= htmlspecialchars($canonical_url); ?>" />
 
     <meta name="google-site-verification" content="eX_sXjETkL7O-emXnSDL6-LirHz1VsbiMIZMyFqgvIw" />
-    <link rel="icon" href="<?= htmlspecialchars($favicon); ?>" type="image/x-icon">
+    <link rel="icon" href="<?= $base_url . htmlspecialchars($favicon); ?>" type="image/x-icon">
 
     <meta name="theme-color" content="#111111">
 
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
-
+    <link rel="icon" href="<?= $base_url; ?>favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= $base_url; ?>favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?= $base_url; ?>favicon-16x16.png">
+    <link rel="apple-touch-icon" href="<?= $base_url; ?>apple-touch-icon.png">
+    <link rel="manifest" href="<?= $base_url; ?>site.webmanifest">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="assets/style/include.css?v=<?= asset_v('assets/style/include.css'); ?>">
-    <link rel="stylesheet" href="assets/style/style.css?v=<?= asset_v('assets/style/style.css'); ?>">
-    <link rel="stylesheet" href="assets/style/about.css?v=<?= asset_v('assets/style/about.css'); ?>">
-    <link rel="stylesheet" href="assets/style/blog.css?v=<?= asset_v('assets/style/blog.css'); ?>">
-    <link rel="stylesheet" href="assets/style/contact.css?v=<?= asset_v('assets/style/contact.css'); ?>">
-    <link rel="stylesheet" href="assets/style/gallery.css?v=<?= asset_v('assets/style/gallery.css'); ?>">
-    <link rel="stylesheet" href="assets/style/product.css?v=<?= asset_v('assets/style/product.css'); ?>">
+    <link rel="stylesheet" href="<?= $base_url; ?>assets/style/include.css?v=<?= asset_v('assets/style/include.css'); ?>">
+    <link rel="stylesheet" href="<?= $base_url; ?>assets/style/style.css?v=<?= asset_v('assets/style/style.css'); ?>">
+    <link rel="stylesheet" href="<?= $base_url; ?>assets/style/about.css?v=<?= asset_v('assets/style/about.css'); ?>">
+    <link rel="stylesheet" href="<?= $base_url; ?>assets/style/blog.css?v=<?= asset_v('assets/style/blog.css'); ?>">
+    <link rel="stylesheet" href="<?= $base_url; ?>assets/style/contact.css?v=<?= asset_v('assets/style/contact.css'); ?>">
+    <link rel="stylesheet" href="<?= $base_url; ?>assets/style/gallery.css?v=<?= asset_v('assets/style/gallery.css'); ?>">
+    <link rel="stylesheet" href="<?= $base_url; ?>assets/style/product.css?v=<?= asset_v('assets/style/product.css'); ?>">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3JGVQX47GN"></script>
     <script>
@@ -127,15 +155,13 @@ if (isset($conn)) {
             j = d.createElement(s),
             dl = l != 'dataLayer' ? '&l=' + l : '';
         j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-PJCRLJB3');
     </script>
 
     <script>
     window.dataLayer = window.dataLayer || [];
-
     function gtag() {
         dataLayer.push(arguments);
     }
@@ -148,38 +174,33 @@ if (isset($conn)) {
     {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Bhagirath Enterprise",
-        "url": "https://bhagirathenterprises.co.in/",
-        "logo": "https://bhagirathenterprises.co.in/assets/images/logo/logo.png",
+        "name": "AKR Buildtech",
+        "url": "<?= htmlspecialchars($canonical_base); ?>",
+        "logo": "<?= $base_url . htmlspecialchars($header_logo); ?>",
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+91-8448211202",
+            "telephone": "<?= htmlspecialchars($t_phone); ?>",
             "contactType": "customer service",
             "areaServed": "IN",
             "availableLanguage": ["en", "hi"]
         },
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Office No-102, 1st Floor, Nitika Tower II, Block C-1, Pocket-4, Azadpur",
-            "addressLocality": "Delhi",
+            "streetAddress": "Office No-102, 1st Floor, Block C, Pocket-4, Azadpur",
+            "addressLocality": "New Delhi",
             "postalCode": "110033",
             "addressCountry": "IN"
-        },
-        "sameAs": [
-            "https://www.facebook.com",
-            "https://www.linkedin.com"
-        ]
+        }
     }
     </script>
     <?php } ?>
 
-    <!-- Dynamic Schema Markup from Pages/Blogs -->
+    <!-- Dynamic Schema Markup from Database -->
     <?php 
     if (isset($page_schema) && !empty(trim($page_schema))) {
         echo $page_schema;
     } 
     ?>
-
 </head>
 
 <body>
@@ -219,9 +240,9 @@ if (isset($conn)) {
     <nav class="navbar navbar-expand-lg custom-navbar sticky-top">
         <div class="container">
 
-            <a class="navbar-brand d-flex align-items-center" href="index.php" style="max-width: 70vw;">
-                <img src="<?= htmlspecialchars($header_logo); ?>" alt="Bhagirath Enterprise Logo" class="site-logo"
-                    onerror="this.onerror=null;this.src='assets/images/logo/logo.png'">
+            <a class="navbar-brand d-flex align-items-center" href="<?= $base_url; ?>" style="max-width: 70vw;">
+                <img src="<?= $base_url . htmlspecialchars($header_logo); ?>" alt="AKR Buildtech Logo" class="site-logo"
+                    onerror="this.onerror=null;this.src='<?= $base_url; ?>assets/images/logo/logo.png'">
             </a>
 
             <button class="navbar-toggler shadow-none border-0" type="button" data-bs-toggle="collapse"
@@ -233,44 +254,47 @@ if (isset($conn)) {
                 <ul class="navbar-nav align-items-lg-center">
                     <li class="nav-item">
                         <a class="nav-link <?= ($current_page == 'index.php') ? 'active' : ''; ?>"
-                            href="index.php">Home</a>
+                            href="<?= $base_url; ?>">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= ($current_page == 'about.php') ? 'active' : ''; ?>"
-                            href="about.php">About Us</a>
+                            href="<?= $base_url; ?>about">About Us</a>
                     </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle <?= ($current_page == 'category.php') ? 'active' : ''; ?>"
-                            href="#" id="categoriesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            href="javascript:void(0);" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Categories
                         </a>
                         <ul class="dropdown-menu border-0 shadow-lg" aria-labelledby="categoriesDropdown">
                             <?php 
-        if ($cats_dropdown_query && mysqli_num_rows($cats_dropdown_query) > 0) {
-            while($cat = mysqli_fetch_assoc($cats_dropdown_query)) {
-                $isActiveCat = ($current_page == 'category.php' && isset($_GET['slug']) && $_GET['slug'] == $cat['slug_url']) ? 'active-dropdown-item' : '';
-        ?>
-                            <li><a class="dropdown-item <?= $isActiveCat; ?>"
-                                    href="category.php?slug=<?= urlencode($cat['slug_url']); ?>"><?= htmlspecialchars($cat['categories']); ?></a>
+                            if ($cats_dropdown_query && mysqli_num_rows($cats_dropdown_query) > 0) {
+                                while($cat = mysqli_fetch_assoc($cats_dropdown_query)) {
+                                    $isActiveCat = ($current_page == 'category.php' && isset($_GET['slug']) && $_GET['slug'] == $cat['slug_url']) ? 'active-dropdown-item' : '';
+                            ?>
+                            <li>
+                                <a class="dropdown-item <?= $isActiveCat; ?>"
+                                    href="<?= $base_url; ?>category/<?= urlencode($cat['slug_url']); ?>">
+                                    <?= htmlspecialchars($cat['categories']); ?>
+                                </a>
                             </li>
                             <?php 
-            }
-        } 
-        ?>
+                                }
+                            } 
+                            ?>
                         </ul>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link <?= ($current_page == 'blog.php' || $current_page == 'blog-details.php') ? 'active' : ''; ?>"
-                            href="blog.php">Blog</a>
+                            href="<?= $base_url; ?>blog">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?= ($current_page == 'contact.php') ? 'active' : ''; ?>"
-                            href="contact.php">Contact Us</a>
+                            href="<?= $base_url; ?>contact">Contact Us</a>
                     </li>
                     <li class="nav-item ms-lg-4 mt-3 mt-lg-0 mb-3 mb-lg-0">
-                        <a class="btn btn-quote" href="contact.php">Get a Quote</a>
+                        <a class="btn btn-quote" href="<?= $base_url; ?>contact">Get a Quote</a>
                     </li>
                 </ul>
             </div>

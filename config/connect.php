@@ -5,25 +5,23 @@ if (session_status() === PHP_SESSION_NONE) {
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Automatic Localhost vs Live Server Detection
+$is_localhost = (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false);
 
-// Database Configuration
-$local = true; 
-
-if ($local) {
+if ($is_localhost) {
     $host = 'localhost';
     $username = 'root';
     $password = '';
     $dbName = 'akrbuild';
-    $site = "http://localhost/projects/akrbuild/";
+    $site = "http://localhost/office_php_project/akrbuild/";
 } else {
     $host = 'localhost';
     $username = 'u799879276_bhagirath_db';
     $password = 'Bhagi@rath1';
     $dbName = 'u799879276_bhagirath_db';
-    $site = 'https://bhagirathenterprises.co.in/';
+    $site = 'https://www.akrbuildtech.com/'; // Live domain with www
 }
 
-// Make `$site` global
 global $site;
 
 // Create Database Connection
@@ -34,7 +32,6 @@ if ($conn->connect_error) {
     die("Database Connection Failed: " . $conn->connect_error);
 }
 
-// Optional: Set Character Encoding to UTF-8
-$conn->set_charset("utf8");
-
+// Set Character Encoding to UTF-8mb4
+$conn->set_charset("utf8mb4");
 ?>

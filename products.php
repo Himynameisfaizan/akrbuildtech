@@ -107,7 +107,7 @@ include 'includes/breadcrumb.php';
                                 $isActive = (isset($_GET['category']) && $_GET['category'] == $cat['slug_url']) ? 'active' : '';
                             ?>
                                 <li>
-                                    <a href="products.php?category=<?php echo $cat['slug_url']; ?>" class="<?php echo $isActive; ?>">
+                                    <a href="products/category/<?php echo $cat['slug_url']; ?>" class="<?php echo $isActive; ?>">
                                         <?php echo $cat['categories']; ?> <span><?php echo $pCount; ?></span>
                                     </a>
                                 </li>
@@ -164,14 +164,14 @@ include 'includes/breadcrumb.php';
                     ?>
                             <div class="col-lg-4 col-md-6 col-12 reveal">
                                 <div class="product-card h-100 shadow-sm border rounded overflow-hidden d-flex flex-column" style="background: #ffffff; transition: all 0.3s ease;">
-                                    <a href="product-details.php?slug=<?php echo $product['slug_url']; ?>" class="product-img-link" style="text-decoration:none;">
+                                    <a href="product/<?php echo $product['slug_url']; ?>" class="product-img-link" style="text-decoration:none;">
                                         <div class="product-img-wrapper" style="height: 220px; overflow: hidden; background: #f8f9fa;">
                                             <img src="admin/assets/img/uploads/<?php echo $product['pro_img']; ?>" alt="<?php echo $product['pro_name']; ?>" style="width: 100%; height: 100%; object-fit: contain; padding: 10px; transition: transform 0.5s ease;" onerror="this.src='assets/images/black.png'">
                                         </div>
                                     </a>
 
                                     <div class="product-content p-4 d-flex flex-column flex-grow-1">
-                                        <a href="product-details.php?slug=<?php echo $product['slug_url']; ?>" style="text-decoration: none;">
+                                        <a href="product/<?php echo $product['slug_url']; ?>" style="text-decoration: none;">
                                             <h3 class="product-title" style="font-size: 1.15rem; font-weight: 700; color: #222222; margin-bottom: 8px;">
                                                 <?php echo htmlspecialchars($product['pro_name']); ?>
                                             </h3>
@@ -184,7 +184,7 @@ include 'includes/breadcrumb.php';
 
                                         <!-- Action Buttons (Left: View Details, Right: Quote) -->
                                         <div class="product-actions mt-auto d-flex justify-content-between align-items-center border-top pt-3">
-                                            <a href="product-details.php?slug=<?php echo $product['slug_url']; ?>" class="view-details-link small fw-bold" style="color: #711b3c; text-decoration: none; transition: 0.3s;">
+                                            <a href="product/<?php echo $product['slug_url']; ?>" class="view-details-link small fw-bold" style="color: #711b3c; text-decoration: none; transition: 0.3s;">
                                                 View Details <i class="bi bi-arrow-right ms-1"></i>
                                             </a>
                                             <a href="contact.php?product=<?php echo urlencode($product['pro_name']); ?>" class="btn-quote-full small px-3 py-2 rounded" style="background-color: #222222; color: white; text-decoration: none; font-weight: 600; transition: all 0.3s;">

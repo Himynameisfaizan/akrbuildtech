@@ -121,7 +121,7 @@ include 'includes/breadcrumb.php';
                                 $isActive = ($sideCat['cate_id'] == $cate_id || $sideCat['slug_url'] == $slug) ? 'fw-bold active-cat' : 'text-muted';
                             ?>
                             <li class="mb-2 pb-2 border-bottom" style="border-color: #f8f9fa !important;">
-                                <a href="category.php?slug=<?= htmlspecialchars($sideCat['slug_url']) ?>"
+                                <a href="category/<?= htmlspecialchars($sideCat['slug_url']) ?>"
                                     class="text-decoration-none d-flex justify-content-between align-items-center category-link <?= $isActive ?>"
                                     style="font-size: 0.95rem;">
                                     <span><i class="fa-solid fa-angle-right me-2" style="font-size: 0.75rem;"></i>
@@ -138,7 +138,7 @@ include 'includes/breadcrumb.php';
 
                         <?php
                         // Fetch 3 Recent Blogs excluding the current one
-                        $recentQuery = mysqli_query($conn, "SELECT * FROM blogs WHERE status = 1 AND blog_id != '{$blog['blog_id']}' ORDER BY created_at DESC LIMIT 3");
+                        $recentQuery = mysqli_query($conn, "SELECT * FROM blogs WHERE status = 1 ORDER BY created_at DESC LIMIT 3");
 
                         if (mysqli_num_rows($recentQuery) > 0) {
                             while ($recentBlog = mysqli_fetch_assoc($recentQuery)):
@@ -150,7 +150,7 @@ include 'includes/breadcrumb.php';
                                 alt="<?php echo htmlspecialchars($recentBlog['title']); ?>">
                             <div class="recent-post-info">
                                 <h4><a
-                                        href="blog-details.php?slug=<?php echo $recentBlog['slug']; ?>"><?php echo htmlspecialchars($recentBlog['title']); ?></a>
+                                        href="blog/<?php echo $recentBlog['slug']; ?>"><?php echo htmlspecialchars($recentBlog['title']); ?></a>
                                 </h4>
                                 <span><?php echo $r_date; ?></span>
                             </div>
