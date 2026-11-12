@@ -474,6 +474,29 @@
   margin-bottom: 10px;
   transition: color 0.3s;
 }
+
+
+.product-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    height: 48px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.product-short-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    min-height: 63px;
+    margin-bottom: 15px;
+}
+
 a:hover > .product-title {
   color: var(--brand-deep);
 }

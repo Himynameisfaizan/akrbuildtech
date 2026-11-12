@@ -13,7 +13,7 @@ if ($is_localhost) {
     $username = 'root';
     $password = '';
     $dbName = 'akrbuild';
-    $site = "http://localhost/office_php_project/akrbuild/";
+    $site = "http://localhost/projects/akrbuild/";
 } else {
     $host = 'localhost';
     $username = 'u799879276_bhagirath_db';

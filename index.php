@@ -65,13 +65,16 @@ include("includes/header.php");
             mysqli_data_seek($banner_res, 0);
             while ($b_row = mysqli_fetch_assoc($banner_res)):
         ?>
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="<?= $i ?>" class="<?= ($i == 0) ? 'active' : '' ?>" aria-current="<?= ($i == 0) ? 'true' : 'false' ?>" aria-label="Slide <?= $i + 1 ?>"></button>
-            <?php
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="<?= $i ?>"
+            class="<?= ($i == 0) ? 'active' : '' ?>" aria-current="<?= ($i == 0) ? 'true' : 'false' ?>"
+            aria-label="Slide <?= $i + 1 ?>"></button>
+        <?php
                 $i++;
             endwhile;
         else:
             ?>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
         <?php endif; ?>
     </div>
 
@@ -83,37 +86,40 @@ include("includes/header.php");
             while ($banner = mysqli_fetch_assoc($banner_res)):
                 $bannerImg = !empty($banner['banner_path']) ? $banner['banner_path'] : 'assets/images/black.png';
         ?>
-                <div class="carousel-item <?= ($j == 0) ? 'active' : '' ?>" data-bs-interval="5000">
-                    <div class="slide-bg" style="background-image: url('admin/<?= htmlspecialchars($bannerImg) ?>');"></div>
-                    <div class="carousel-caption">
-                        <div class="container">
-                            <h2 class="hero-title"><?= htmlspecialchars($banner['title']) ?></h2>
-                            <p><?= htmlspecialchars($banner['description']) ?></p>
-                            <div>
-                                <a href="<?= !empty($banner['link_url']) ? htmlspecialchars($banner['link_url']) : 'products.php' ?>" class="btn-primary-custom">Explore Products</a>
-                                <a href="contact.php" class="btn-outline-custom">Contact an Expert</a>
-                            </div>
-                        </div>
+        <div class="carousel-item <?= ($j == 0) ? 'active' : '' ?>" data-bs-interval="5000">
+            <div class="slide-bg" style="background-image: url('admin/<?= htmlspecialchars($bannerImg) ?>');"></div>
+            <div class="carousel-caption">
+                <div class="container">
+                    <h2 class="hero-title"><?= htmlspecialchars($banner['title']) ?></h2>
+                    <p><?= htmlspecialchars($banner['description']) ?></p>
+                    <div>
+                        <a href="<?= !empty($banner['link_url']) ? htmlspecialchars($banner['link_url']) : 'products.php' ?>"
+                            class="btn-primary-custom">Explore Products</a>
+                        <a href="contact" class="btn-outline-custom">Contact an Expert</a>
                     </div>
                 </div>
-            <?php
+            </div>
+        </div>
+        <?php
                 $j++;
             endwhile;
         else:
             ?>
-            <div class="carousel-item active" data-bs-interval="5000">
-                <div class="slide-bg" style="background-image: url('assets/images/banner1.jpg');"></div>
-                <div class="carousel-caption">
-                    <div class="container">
-                        <h2 class="hero-title">Premium Indian Spices <br><span class="hero-accent">&amp; Dry Fruits</span></h2>
-                        <p>Bhagirath Enterprise exports the finest quality agricultural products worldwide with unmatched purity.</p>
-                        <div>
-                            <a href="products.php" class="btn-primary-custom">Explore Products</a>
-                            <a href="contact.php" class="btn-outline-custom">Contact an Expert</a>
-                        </div>
+        <div class="carousel-item active" data-bs-interval="5000">
+            <div class="slide-bg" style="background-image: url('assets/images/banner1.jpg');"></div>
+            <div class="carousel-caption">
+                <div class="container">
+                    <h2 class="hero-title">Premium Indian Spices <br><span class="hero-accent">&amp; Dry Fruits</span>
+                    </h2>
+                    <p>Bhagirath Enterprise exports the finest quality agricultural products worldwide with unmatched
+                        purity.</p>
+                    <div>
+                        <a href="products" class="btn-primary-custom">Explore Products</a>
+                        <a href="contact" class="btn-outline-custom">Contact an Expert</a>
                     </div>
                 </div>
             </div>
+        </div>
         <?php endif; ?>
     </div>
 
@@ -137,7 +143,9 @@ include("includes/header.php");
                     // Database se image path fetch karna (agar khali ho toh default image dikhegi)
                     $aboutImg = !empty($about_data['image_url']) ? 'admin/' . $about_data['image_url'] : 'assets/images/about.jpg';
                     ?>
-                    <img src="<?= htmlspecialchars($aboutImg); ?>" alt="<?= !empty($about_data['title']) ? htmlspecialchars($about_data['title']) : 'Bhagirath Enterprise Premium Quality'; ?>" onerror="this.src='https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800&auto=format&fit=crop'">
+                    <img src="<?= htmlspecialchars($aboutImg); ?>"
+                        alt="<?= !empty($about_data['title']) ? htmlspecialchars($about_data['title']) : 'Bhagirath Enterprise Premium Quality'; ?>"
+                        onerror="this.src='https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800&auto=format&fit=crop'">
                     <div class="about-experience">
                         <h3 class="mb-0">100%</h3>
                         <p class="mb-0 small">Authentic Quality</p>
@@ -147,21 +155,21 @@ include("includes/header.php");
             <div class="col-lg-6 ps-lg-5">
                 <span class="section-eyebrow">Who We Are</span>
 
-<h1 class="section-title mb-4 h2">
-    <?= !empty($about_data['title']) ? htmlspecialchars($about_data['title']) : 'Delivering Excellence in Infrastructure & Urban Development'; ?>
-</h1>
+                <h1 class="section-title mb-4 h2">
+                    <?= !empty($about_data['title']) ? htmlspecialchars($about_data['title']) : 'Delivering Excellence in Infrastructure & Urban Development'; ?>
+                </h1>
 
-<div class="text-muted-custom mb-4">
-    <?php
-    if (!empty($about_data['content'])) {
-        echo $about_data['content'];
-    } else {
-        echo '<p>At <strong>AKR Build Tech</strong>, we specialize in supplying top-tier construction materials and solutions, including premium <strong>AAC Block Jointing Mortar</strong>. We are committed to driving innovation in infrastructure and urban development projects both locally and globally.</p>';
-    }
-    ?>
-</div>
+                <div class="text-muted-custom mb-4">
+                    <?php
+                    if (!empty($about_data['content'])) {
+                        echo $about_data['content'];
+                    } else {
+                        echo '<p>At <strong>AKR Build Tech</strong>, we specialize in supplying top-tier construction materials and solutions, including premium <strong>AAC Block Jointing Mortar</strong>. We are committed to driving innovation in infrastructure and urban development projects both locally and globally.</p>';
+                    }
+                    ?>
+                </div>
 
-                <a href="about.php" class="btn btn-ink">Read More About Us</a>
+                <a href="about" class="btn btn-ink">Read More About Us</a>
             </div>
         </div>
     </div>
@@ -173,7 +181,8 @@ include("includes/header.php");
         <div class="text-center mb-5 d-flex flex-column">
             <span class="section-eyebrow">Shop By Category</span>
             <h2 class="section-title mx-auto">Our Premium Categories</h2>
-            <p class="text-muted-custom mt-3 max-w-700 mx-auto" style="max-width: 600px;">Explore our diverse range of high-quality, farm-fresh agricultural categories, carefully sourced to meet global standards.</p>
+            <p class="text-muted-custom mt-3 max-w-700 mx-auto" style="max-width: 600px;">Explore our diverse range of
+                high-quality, farm-fresh agricultural categories, carefully sourced to meet global standards.</p>
         </div>
 
         <div class="row g-4">
@@ -183,25 +192,31 @@ include("includes/header.php");
                     $catImg = !empty($cat['image']) ? 'admin/uploads/category/' . $cat['image'] : 'assets/images/black.png';
                     $catSlug = !empty($cat['slug_url']) ? $cat['slug_url'] : $cat['cate_id'];
             ?>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-card h-100 bg-white overflow-hidden text-center">
-                            <div class="service-img-container" style="height: 250px; overflow: hidden; background-color: #f8f9fa;">
-                                <img src="<?= htmlspecialchars($catImg) ?>" loading="lazy" decoding="async" alt="<?= htmlspecialchars($cat['categories']) ?>" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/black.png'">
-                            </div>
-                            <div class="card-body p-4">
-                                <h3 class="service-title" style="font-size: 1.5rem;"><?= htmlspecialchars($cat['categories']) ?></h3>
-                                <p class="text-muted-custom small mb-4">
-                                    <?= htmlspecialchars(substr($cat['meta_desc'], 0, 80)) ?>...
-                                </p>
-                                <a href="products.php?category=<?= urlencode($catSlug) ?>" class="btn-quote-outline d-inline-block mt-2">View Category</a>
-                            </div>
-                        </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-card h-100 bg-white overflow-hidden text-center">
+                    <div class="service-img-container"
+                        style="height: 250px; overflow: hidden; background-color: #f8f9fa;">
+                        <img src="<?= htmlspecialchars($catImg) ?>" loading="lazy" decoding="async"
+                            alt="<?= htmlspecialchars($cat['categories']) ?>"
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            onerror="this.src='assets/images/black.png'">
                     </div>
-                <?php
+                    <div class="card-body p-4">
+                        <h3 class="service-title" style="font-size: 1.5rem;"><?= htmlspecialchars($cat['categories']) ?>
+                        </h3>
+                        <p class="text-muted-custom small mb-4">
+                            <?= htmlspecialchars(substr($cat['meta_desc'], 0, 80)) ?>...
+                        </p>
+                        <a href="category/<?= urlencode($catSlug) ?>" class="btn-quote-outline d-inline-block mt-2">View
+                            Category</a>
+                    </div>
+                </div>
+            </div>
+            <?php
                 endwhile;
             else:
                 ?>
-                <div class="col-12 text-center text-muted">No categories available right now.</div>
+            <div class="col-12 text-center text-muted">No categories available right now.</div>
             <?php endif; ?>
         </div>
     </div>
@@ -220,28 +235,32 @@ include("includes/header.php");
                 <div class="feature-box">
                     <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
                     <h5 class="feature-title">Certified Quality</h5>
-                    <p class="text-muted-custom small mb-0">Our products meet rigorous global food safety standards ensuring 100% purity and authenticity.</p>
+                    <p class="text-muted-custom small mb-0">Our products meet rigorous global food safety standards
+                        ensuring 100% purity and authenticity.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="feature-box">
                     <div class="feature-icon"><i class="bi bi-globe"></i></div>
                     <h5 class="feature-title">Global Export</h5>
-                    <p class="text-muted-custom small mb-0">Seamless international logistics and timely delivery to our clients across the globe.</p>
+                    <p class="text-muted-custom small mb-0">Seamless international logistics and timely delivery to our
+                        clients across the globe.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="feature-box">
                     <div class="feature-icon"><i class="bi bi-basket"></i></div>
                     <h5 class="feature-title">Farm Fresh Sourcing</h5>
-                    <p class="text-muted-custom small mb-0">Ethically sourced directly from the finest Indian farms to preserve natural aroma and taste.</p>
+                    <p class="text-muted-custom small mb-0">Ethically sourced directly from the finest Indian farms to
+                        preserve natural aroma and taste.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="feature-box">
                     <div class="feature-icon"><i class="bi bi-graph-up-arrow"></i></div>
                     <h5 class="feature-title">Competitive Pricing</h5>
-                    <p class="text-muted-custom small mb-0">Premium quality agricultural and food exports offered at the best international market rates.</p>
+                    <p class="text-muted-custom small mb-0">Premium quality agricultural and food exports offered at the
+                        best international market rates.</p>
                 </div>
             </div>
         </div>
@@ -257,9 +276,11 @@ include("includes/header.php");
                 <h2 class="section-title mb-0">Premium Export Products</h2>
             </div>
             <div class="d-none d-md-block">
-                <a href="products.php" class="btn btn-outline-dark" style="border-radius: 20px; font-weight: 600;">View All Products</a>
+                <a href="products.php" class="btn btn-outline-dark" style="border-radius: 20px; font-weight: 600;">View
+                    All Products</a>
             </div>
         </div>
+
 
         <div class="row g-4">
             <?php
@@ -267,45 +288,70 @@ include("includes/header.php");
                 while ($prod = mysqli_fetch_assoc($products_res)):
                     $proImg = !empty($prod['pro_img']) ? 'admin/assets/img/uploads/' . $prod['pro_img'] : 'assets/images/black.png';
 
-                    // Slug check: Agar slug_url database mein khali hai toh fallback ke liye id use karega
                     $productSlug = !empty($prod['slug_url']) ? $prod['slug_url'] : $prod['id'];
             ?>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="product-card h-100 overflow-hidden">
-                            <span class="product-badge">Export Grade</span>
-                            <div class="product-img-wrapper" style="height: 200px; overflow: hidden;">
-                                <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>">
-                                    <img src="<?= htmlspecialchars($proImg) ?>" loading="lazy" decoding="async" alt="<?= htmlspecialchars($prod['pro_name']) ?>" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='assets/images/black.png'">
-                                </a>
-                            </div>
-                            <div class="p-4">
-                                <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" style="text-decoration:none;">
-                                    <h3 class="product-title" style="font-size: 1.05rem; font-weight: 700; height: 48px; overflow: hidden;">
-                                        <?= htmlspecialchars($prod['pro_name']) ?>
-                                    </h3>
-                                </a>
-                                <div class="mb-3">
-                                    <a href="product-details.php?slug=<?php echo urlencode($productSlug); ?>" class="view-details-link">View Details <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i></a>
-                                </div>
-                                <div class="d-flex gap-2">
-                                    <a href="tel:<?= htmlspecialchars(preg_replace('/[^0-9+]/', '', $t_phone)); ?>" class="btn-call" title="Call for inquiry" aria-label="Call for inquiry">
-                                        <i class="bi bi-telephone-fill"></i>
-                                    </a>
-                                    <a href="contact.php?product=<?= urlencode($prod['pro_name']) ?>" class="btn btn-quote-full flex-grow-1 text-center py-2 text-decoration-none">Inquire Now</a>
-                                </div>
-                            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="product-card h-100 overflow-hidden">
+                    <span class="product-badge">Export Grade</span>
+
+                    <div class="product-img-wrapper" style="height: 200px; overflow: hidden;">
+                        <a href="product/<?php echo urlencode($productSlug); ?>">
+                            <img src="<?= htmlspecialchars($proImg) ?>" loading="lazy" decoding="async"
+                                alt="<?= htmlspecialchars($prod['pro_name']) ?>"
+                                style="width: 100%; height: 100%; object-fit: cover;"
+                                onerror="this.src='assets/images/black.png'">
+                        </a>
+                    </div>
+
+                    <div class="p-4">
+                        <a href="product/<?php echo urlencode($productSlug); ?>" style="text-decoration:none;">
+                            <h3 class="product-title">
+                                <?= htmlspecialchars($prod['pro_name']) ?>
+                            </h3>
+                        </a>
+
+                        <!-- Short Description -->
+                        <p class="product-short-desc">
+                            <?= htmlspecialchars(
+                                        trim(strip_tags(html_entity_decode($prod['short_desc'] ?? '', ENT_QUOTES, 'UTF-8'))),
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    ) ?>
+                        </p>
+
+                        <div class="mb-3">
+                            <a href="product/<?php echo urlencode($productSlug); ?>" class="view-details-link">
+                                View Details <i class="bi bi-chevron-right" style="font-size: 0.8rem;"></i>
+                            </a>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <a href="tel:<?= htmlspecialchars(preg_replace('/[^0-9+]/', '', $t_phone)); ?>"
+                                class="btn-call" title="Call for inquiry" aria-label="Call for inquiry">
+                                <i class="bi bi-telephone-fill"></i>
+                            </a>
+
+                            <a href="contact.php?product=<?= urlencode($prod['pro_name']) ?>"
+                                class="btn btn-quote-full flex-grow-1 text-center py-2 text-decoration-none">
+                                Inquire Now
+                            </a>
                         </div>
                     </div>
-                <?php
+                </div>
+            </div>
+
+            <?php
                 endwhile;
             else:
                 ?>
-                <div class="col-12 text-center text-muted">No products found.</div>
+            <div class="col-12 text-center text-muted">No products found.</div>
             <?php endif; ?>
         </div>
 
+
         <div class="text-center mt-4 d-block d-md-none">
-            <a href="products.php" class="btn btn-outline-dark" style="border-radius: 20px; font-weight: 600;">View All Products</a>
+            <a href="products.php" class="btn btn-outline-dark" style="border-radius: 20px; font-weight: 600;">View All
+                Products</a>
         </div>
     </div>
 </section>
@@ -324,22 +370,27 @@ include("includes/header.php");
                 while ($test = mysqli_fetch_assoc($test_res)):
                     $testImg = !empty($test['image']) ? 'admin/uploads/testimonials/' . $test['image'] : 'assets/images/clove.png';
             ?>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="testimonial-card p-4 bg-white shadow-sm rounded-4 h-100 position-relative transition-up">
-                            <i class="bi bi-quote position-absolute testimonial-quote-icon"></i>
+            <div class="col-lg-4 col-md-6">
+                <div class="testimonial-card p-4 bg-white shadow-sm rounded-4 h-100 position-relative transition-up">
+                    <i class="bi bi-quote position-absolute testimonial-quote-icon"></i>
 
-                            <div class="position-relative z-1">
-                                <div class="d-flex align-items-center mb-4">
-                                    <div class="test-img-wrap rounded-circle overflow-hidden me-3 shadow-sm" style="width: 65px; height: 65px; border: 3px solid #f8f9fa;">
-                                        <img src="<?= htmlspecialchars($testImg) ?>" loading="lazy" decoding="async" alt="<?= htmlspecialchars($test['name']) ?>" class="w-100 h-100" style="object-fit: cover;" onerror="this.src='assets/images/default-avatar.png'">
-                                    </div>
-                                    <div>
-                                        <h4 class="mb-0" style="color: var(--ink); font-weight: 700; font-size: 1.1rem;"><?= htmlspecialchars($test['name']) ?></h4>
-                                        <span class="testimonial-role small fw-semibold"><?= htmlspecialchars($test['designation']) ?></span>
-                                    </div>
-                                </div>
-                                <div class="stars mb-2">
-                                    <?php
+                    <div class="position-relative z-1">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="test-img-wrap rounded-circle overflow-hidden me-3 shadow-sm"
+                                style="width: 65px; height: 65px; border: 3px solid #f8f9fa;">
+                                <img src="<?= htmlspecialchars($testImg) ?>" loading="lazy" decoding="async"
+                                    alt="<?= htmlspecialchars($test['name']) ?>" class="w-100 h-100"
+                                    style="object-fit: cover;" onerror="this.src='assets/images/default-avatar.png'">
+                            </div>
+                            <div>
+                                <h4 class="mb-0" style="color: var(--ink); font-weight: 700; font-size: 1.1rem;">
+                                    <?= htmlspecialchars($test['name']) ?></h4>
+                                <span
+                                    class="testimonial-role small fw-semibold"><?= htmlspecialchars($test['designation']) ?></span>
+                            </div>
+                        </div>
+                        <div class="stars mb-2">
+                            <?php
                                     $rating = intval($test['rating']);
                                     for ($i = 1; $i <= 5; $i++) {
                                         if ($i <= $rating) {
@@ -349,18 +400,18 @@ include("includes/header.php");
                                         }
                                     }
                                     ?>
-                                </div>
-                                <p class="text-muted-custom small mb-0" style="font-style: italic; line-height: 1.6;">
-                                    "<?= htmlspecialchars($test['message']) ?>"
-                                </p>
-                            </div>
                         </div>
+                        <p class="text-muted-custom small mb-0" style="font-style: italic; line-height: 1.6;">
+                            "<?= htmlspecialchars($test['message']) ?>"
+                        </p>
                     </div>
-                <?php
+                </div>
+            </div>
+            <?php
                 endwhile;
             else:
                 ?>
-                <div class="col-12 text-center text-muted">Client reviews will be updated shortly.</div>
+            <div class="col-12 text-center text-muted">Client reviews will be updated shortly.</div>
             <?php endif; ?>
         </div>
     </div>
@@ -374,34 +425,36 @@ include("includes/header.php");
         <div class="brand-slider-container">
             <div class="brand-slide-track<?= empty($brands_array) ? ' is-static' : '' ?>">
                 <?php if (!empty($brands_array)): ?>
-                    <?php
+                <?php
                     // Track -50% pe loop hota hai: copies hamesha even hon aur aadha track screen se chauda ho.
                     $brand_copies = max(1, (int) ceil(8 / count($brands_array))) * 2;
                     for ($loop = 0; $loop < $brand_copies; $loop++):
                         foreach ($brands_array as $brand):
                             $brandLogo = !empty($brand['logo_path']) ? $brand['logo_path'] : '';
                     ?>
-                            <div class="brand-slide"<?= $loop > 0 ? ' aria-hidden="true"' : '' ?>>
-                                <?php if (!empty($brandLogo)): ?>
-                                    <img src="admin/<?= htmlspecialchars($brandLogo) ?>" loading="lazy" alt="<?= htmlspecialchars($brand['brand_name']) ?>" title="<?= htmlspecialchars($brand['brand_name']) ?>">
-                                <?php else: ?>
-                                    <span class="fw-bold text-dark"><?= htmlspecialchars($brand['brand_name']) ?></span>
-                                <?php endif; ?>
-                            </div>
-                    <?php
+                <div class="brand-slide" <?= $loop > 0 ? ' aria-hidden="true"' : '' ?>>
+                    <?php if (!empty($brandLogo)): ?>
+                    <img src="admin/<?= htmlspecialchars($brandLogo) ?>" loading="lazy"
+                        alt="<?= htmlspecialchars($brand['brand_name']) ?>"
+                        title="<?= htmlspecialchars($brand['brand_name']) ?>">
+                    <?php else: ?>
+                    <span class="fw-bold text-dark"><?= htmlspecialchars($brand['brand_name']) ?></span>
+                    <?php endif; ?>
+                </div>
+                <?php
                         endforeach;
                     endfor;
                     ?>
                 <?php else: ?>
-                    <div class="brand-slide">
-                        <h4 class="brand-logo">FSSAI</h4>
-                    </div>
-                    <div class="brand-slide">
-                        <h4 class="brand-logo">APEDA</h4>
-                    </div>
-                    <div class="brand-slide">
-                        <h4 class="brand-logo">SPICES BOARD</h4>
-                    </div>
+                <div class="brand-slide">
+                    <h4 class="brand-logo">FSSAI</h4>
+                </div>
+                <div class="brand-slide">
+                    <h4 class="brand-logo">APEDA</h4>
+                </div>
+                <div class="brand-slide">
+                    <h4 class="brand-logo">SPICES BOARD</h4>
+                </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -427,13 +480,17 @@ include("includes/header.php");
                     <!-- FAQ Item 1 -->
                     <div class="accordion-item">
                         <h3 class="accordion-header" id="faqHeading1">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
                                 Are your agricultural products certified for global export?
                             </button>
                         </h3>
-                        <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#exportFaqAccordion">
+                        <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1"
+                            data-bs-parent="#exportFaqAccordion">
                             <div class="accordion-body text-muted small">
-                                Yes, absolutely. Bhagirath Enterprise strictly complies with global food safety standards. Our exports are backed by necessary quality checks and certifications to clear customs smoothly in your destination country.
+                                Yes, absolutely. Bhagirath Enterprise strictly complies with global food safety
+                                standards. Our exports are backed by necessary quality checks and certifications to
+                                clear customs smoothly in your destination country.
                             </div>
                         </div>
                     </div>
@@ -441,13 +498,17 @@ include("includes/header.php");
                     <!-- FAQ Item 2 -->
                     <div class="accordion-item">
                         <h3 class="accordion-header" id="faqHeading2">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
                                 Do you handle B2B bulk orders and container shipments?
                             </button>
                         </h3>
-                        <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#exportFaqAccordion">
+                        <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
+                            data-bs-parent="#exportFaqAccordion">
                             <div class="accordion-body text-muted small">
-                                Yes, our core expertise lies in B2B wholesale and bulk container shipments (FCL/LCL). We supply high volumes of dry fruits, whole spices, and other commodities tailored to your commercial needs.
+                                Yes, our core expertise lies in B2B wholesale and bulk container shipments (FCL/LCL). We
+                                supply high volumes of dry fruits, whole spices, and other commodities tailored to your
+                                commercial needs.
                             </div>
                         </div>
                     </div>
@@ -455,13 +516,18 @@ include("includes/header.php");
                     <!-- FAQ Item 3 -->
                     <div class="accordion-item">
                         <h3 class="accordion-header" id="faqHeading3">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
                                 What is your Minimum Order Quantity (MOQ)?
                             </button>
                         </h3>
-                        <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#exportFaqAccordion">
+                        <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
+                            data-bs-parent="#exportFaqAccordion">
                             <div class="accordion-body text-muted small">
-                                The Minimum Order Quantity (MOQ) varies depending on the specific product and the shipping method. Please reach out to our sales team at <a href="mailto:<?= htmlspecialchars($t_email); ?>"><?= htmlspecialchars($t_email); ?></a> for exact product-wise MOQs.
+                                The Minimum Order Quantity (MOQ) varies depending on the specific product and the
+                                shipping method. Please reach out to our sales team at <a
+                                    href="mailto:<?= htmlspecialchars($t_email); ?>"><?= htmlspecialchars($t_email); ?></a>
+                                for exact product-wise MOQs.
                             </div>
                         </div>
                     </div>
@@ -469,13 +535,17 @@ include("includes/header.php");
                     <!-- FAQ Item 4 -->
                     <div class="accordion-item">
                         <h3 class="accordion-header" id="faqHeading4">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
                                 Do you offer customized or private label packaging?
                             </button>
                         </h3>
-                        <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#exportFaqAccordion">
+                        <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
+                            data-bs-parent="#exportFaqAccordion">
                             <div class="accordion-body text-muted small">
-                                Yes, we offer customized packaging solutions, including bulk PP bags, jute bags, vacuum packs, and private labeling for retail brands. Let us know your packaging requirements during the inquiry process.
+                                Yes, we offer customized packaging solutions, including bulk PP bags, jute bags, vacuum
+                                packs, and private labeling for retail brands. Let us know your packaging requirements
+                                during the inquiry process.
                             </div>
                         </div>
                     </div>
@@ -489,21 +559,21 @@ include("includes/header.php");
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const reveals = document.querySelectorAll(".reveal");
-        const revealOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("active");
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.15
+document.addEventListener("DOMContentLoaded", function() {
+    const reveals = document.querySelectorAll(".reveal");
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target);
+            }
         });
-
-        reveals.forEach(reveal => revealOnScroll.observe(reveal));
+    }, {
+        threshold: 0.15
     });
+
+    reveals.forEach(reveal => revealOnScroll.observe(reveal));
+});
 </script>
 
 <?php include('includes/footer.php'); ?>
