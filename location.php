@@ -222,7 +222,7 @@ body.location-page {
 
                     $slug = trim((string)($customPage['slug_url'] ?? ''));
                     // Note: Update this link structure if using .htaccess URL rewriting (e.g., '/page/' . $slug)
-                    $pageUrl = 'page.php?slug=' . rawurlencode($slug); 
+                    $pageUrl = 'page/' . rawurlencode($slug); 
                 ?>
                 <div class="col-12 col-md-6 col-lg-4 animate-fade-up" style="animation-delay: <?= $delay; ?>s;">
                     <a href="<?= locationPageText($pageUrl); ?>" class="premium-card">

@@ -61,7 +61,8 @@ if (isset($conn)) {
             <!-- Column 1: About & Logo -->
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                 <div class="footer-brand bg-white d-inline-block p-2 mb-4 shadow-sm">
-                    <img src="<?= htmlspecialchars($footer_logo); ?>" alt="Bhagirath Enterprise" onerror="this.onerror=null;this.src='assets/images/logo/logo.png'">
+                    <img src="<?= htmlspecialchars($footer_logo); ?>" alt="Bhagirath Enterprise"
+                        onerror="this.onerror=null;this.src='assets/images/logo/logo.png'">
                 </div>
                 <h4 class="footer-brand-name">BHAGIRATH ENTERPRISE</h4>
                 <!-- Dynamic Company Content -->
@@ -79,21 +80,26 @@ if (isset($conn)) {
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                 <h4 class="footer-heading">Information</h4>
                 <ul class="footer-links list-unstyled">
-                    <li><a href="index.php"><i class="bi bi-chevron-right small me-2"></i> Home</a></li>
-                    <li><a href="about.php"><i class="bi bi-chevron-right small me-2"></i> Company Profile</a></li>
-                    <li><a href="contact.php"><i class="bi bi-chevron-right small me-2"></i> Contact Us</a></li>
-                    <li><a href="terms-condition.php"><i class="bi bi-chevron-right small me-2"></i> Terms &amp; Conditions</a></li>
-                    <li><a href="privacy-policy.php"><i class="bi bi-chevron-right small me-2"></i> Privacy Policy</a></li>
-                    <li><a href="shipping-return.php"><i class="bi bi-chevron-right small me-2"></i> Shipping &amp; Returns</a></li>
-                    <li><a href="refund-policy.php"><i class="bi bi-chevron-right small me-2"></i> Refund &amp; Cancellation</a></li>
-                    
+                    <li><a href="index"><i class="bi bi-chevron-right small me-2"></i> Home</a></li>
+                    <li><a href="about"><i class="bi bi-chevron-right small me-2"></i> Company Profile</a></li>
+                    <li><a href="contact"><i class="bi bi-chevron-right small me-2"></i> Contact Us</a></li>
+                    <li><a href="terms-condition"><i class="bi bi-chevron-right small me-2"></i> Terms &amp;
+                            Conditions</a></li>
+                    <li><a href="privacy-policy"><i class="bi bi-chevron-right small me-2"></i> Privacy Policy</a>
+                    </li>
+                    <li><a href="shipping-return"><i class="bi bi-chevron-right small me-2"></i> Shipping &amp;
+                            Returns</a></li>
+                    <li><a href="refund-policy"><i class="bi bi-chevron-right small me-2"></i> Refund &amp;
+                            Cancellation</a></li>
+
                     <!-- Dynamic Custom SEO Pages Links -->
                     <?php
                     if (isset($footer_custom_pages) && mysqli_num_rows($footer_custom_pages) > 0) {
                         while ($custom_p = mysqli_fetch_assoc($footer_custom_pages)) {
                             $p_title = !empty($custom_p['breadcrumb_title']) ? $custom_p['breadcrumb_title'] : $custom_p['page_title'];
                     ?>
-                        <li><a href="page.php?slug=<?= htmlspecialchars($custom_p['slug_url']); ?>"><i class="bi bi-chevron-right small me-2"></i> <?= htmlspecialchars($p_title); ?></a></li>
+                    <li><a href="page.php?slug=<?= htmlspecialchars($custom_p['slug_url']); ?>"><i
+                                class="bi bi-chevron-right small me-2"></i> <?= htmlspecialchars($p_title); ?></a></li>
                     <?php
                         }
                     }
@@ -110,18 +116,18 @@ if (isset($conn)) {
                         while ($f_prod = mysqli_fetch_assoc($footer_products)) {
                             $prod_slug = !empty($f_prod['slug_url']) ? $f_prod['slug_url'] : $f_prod['id'];
                     ?>
-                            <li>
-                                <a href="product-details.php?slug=<?= htmlspecialchars($prod_slug); ?>">
-                                    <i class="bi bi-chevron-right small me-2"></i> <?= htmlspecialchars($f_prod['pro_name']); ?>
-                                </a>
-                            </li>
-                        <?php
+                    <li>
+                        <a href="product/<?= htmlspecialchars($prod_slug); ?>">
+                            <i class="bi bi-chevron-right small me-2"></i> <?= htmlspecialchars($f_prod['pro_name']); ?>
+                        </a>
+                    </li>
+                    <?php
                         }
                     } else {
                         ?>
-                        <li><a href="products.php"><i class="bi bi-chevron-right small me-2"></i> Whole Spices</a></li>
-                        <li><a href="products.php"><i class="bi bi-chevron-right small me-2"></i> Dry Fruits</a></li>
-                        <li><a href="products.php"><i class="bi bi-chevron-right small me-2"></i> Premium Nuts</a></li>
+                    <li><a href="products.php"><i class="bi bi-chevron-right small me-2"></i> Whole Spices</a></li>
+                    <li><a href="products.php"><i class="bi bi-chevron-right small me-2"></i> Dry Fruits</a></li>
+                    <li><a href="products.php"><i class="bi bi-chevron-right small me-2"></i> Premium Nuts</a></li>
                     <?php } ?>
                 </ul>
             </div>
@@ -143,7 +149,8 @@ if (isset($conn)) {
                             <i class="bi bi-telephone-fill"></i>
                         </div>
                         <span>
-                            <a href="tel:<?= htmlspecialchars(preg_replace('/[^0-9+]/', '', $c_phone)); ?>" class="footer-text text-decoration-none">
+                            <a href="tel:<?= htmlspecialchars(preg_replace('/[^0-9+]/', '', $c_phone)); ?>"
+                                class="footer-text text-decoration-none">
                                 <?= htmlspecialchars($c_phone); ?>
                             </a>
                         </span>
@@ -153,7 +160,8 @@ if (isset($conn)) {
                             <i class="bi bi-envelope-fill"></i>
                         </div>
                         <span>
-                            <a href="mailto:<?= htmlspecialchars($c_email); ?>" class="footer-text text-decoration-none" style="word-break: break-all;">
+                            <a href="mailto:<?= htmlspecialchars($c_email); ?>" class="footer-text text-decoration-none"
+                                style="word-break: break-all;">
                                 <?= htmlspecialchars($c_email); ?>
                             </a>
                         </span>
@@ -163,27 +171,31 @@ if (isset($conn)) {
                 <!-- Social Media Icons -->
                 <div class="footer-social d-flex gap-3">
                     <?php if ($c_fb != '#'): ?>
-                        <a href="<?= htmlspecialchars($c_fb); ?>" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                            <i class="bi bi-facebook"></i>
-                        </a>
+                    <a href="<?= htmlspecialchars($c_fb); ?>" target="_blank" rel="noopener noreferrer"
+                        aria-label="Facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
                     <?php endif; ?>
 
                     <?php if ($c_instagram != '#'): ?>
-                        <a href="<?= htmlspecialchars($c_instagram); ?>" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                            <i class="bi bi-instagram"></i>
-                        </a>
+                    <a href="<?= htmlspecialchars($c_instagram); ?>" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
                     <?php endif; ?>
 
                     <?php if ($c_linkedin != '#'): ?>
-                        <a href="<?= htmlspecialchars($c_linkedin); ?>" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <i class="bi bi-linkedin"></i>
-                        </a>
+                    <a href="<?= htmlspecialchars($c_linkedin); ?>" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
                     <?php endif; ?>
 
                     <?php if ($c_wp != '#'): ?>
-                        <a href="<?= htmlspecialchars($c_wp); ?>" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                            <i class="bi bi-whatsapp"></i>
-                        </a>
+                    <a href="<?= htmlspecialchars($c_wp); ?>" target="_blank" rel="noopener noreferrer"
+                        aria-label="WhatsApp">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -199,7 +211,8 @@ if (isset($conn)) {
                     &copy; <?= date('Y'); ?> <strong>Bhagirath Enterprise</strong>. All rights reserved.
                 </div>
                 <div class="col-md-6 text-center text-md-end">
-                    Powered by <a href="https://digitalwebtrackers.com" target="_blank" rel="noopener">digitalwebtrackers.com</a>
+                    Powered by <a href="https://digitalwebtrackers.com" target="_blank"
+                        rel="noopener">digitalwebtrackers.com</a>
                 </div>
             </div>
         </div>
@@ -210,14 +223,16 @@ if (isset($conn)) {
 <div class="floating-contact">
     <!-- Phone Call Floating Button -->
     <?php if (!empty($c_phone) && $c_phone != '#'): ?>
-        <a href="tel:<?= htmlspecialchars(preg_replace('/[^0-9+]/', '', $c_phone)); ?>" class="float-btn float-phone shadow-lg" title="Call Us" aria-label="Call us">
-            <i class="bi bi-telephone-fill"></i>
-        </a>
+    <a href="tel:<?= htmlspecialchars(preg_replace('/[^0-9+]/', '', $c_phone)); ?>"
+        class="float-btn float-phone shadow-lg" title="Call Us" aria-label="Call us">
+        <i class="bi bi-telephone-fill"></i>
+    </a>
     <?php endif; ?>
     <!-- WhatsApp Floating Button -->
     <?php if (!empty($c_wp) && $c_wp != '#'): ?>
-        <a href="<?= htmlspecialchars($c_wp); ?>" target="_blank" class="float-btn float-whatsapp shadow-lg" title="Chat on WhatsApp" aria-label="Chat on WhatsApp" rel="noopener noreferrer">
-            <i class="bi bi-whatsapp"></i>
-        </a>
+    <a href="<?= htmlspecialchars($c_wp); ?>" target="_blank" class="float-btn float-whatsapp shadow-lg"
+        title="Chat on WhatsApp" aria-label="Chat on WhatsApp" rel="noopener noreferrer">
+        <i class="bi bi-whatsapp"></i>
+    </a>
     <?php endif; ?>
 </div>
